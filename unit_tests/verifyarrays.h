@@ -1,7 +1,8 @@
 #ifndef SORTING_UNIT_TESTS_VERIFYARRAYS_H_
 #define SORTING_UNIT_TESTS_VERIFYARRAYS_H_
 
-bool VerifyIfAllNotNaN(double const * const sorted, const int N)
+template <class T>
+bool VerifyIfAllNotNaN(T const * const sorted, const int N)
 {
     // Verify any NaN
     for (int i = 1 ; i < N ; i++)
@@ -14,7 +15,8 @@ bool VerifyIfAllNotNaN(double const * const sorted, const int N)
     return true;
 }
 
-bool VerifyIfOrdered(double const * const sorted, const int N)
+template <class T>
+bool VerifyIfOrdered(T const * const sorted, const int N)
 {
     // Make sure array is ordered
     for (int i = 1 ; i < N ; i++)
@@ -27,14 +29,15 @@ bool VerifyIfOrdered(double const * const sorted, const int N)
     return true;
 }
 
-bool VerifySortedUnique(double const * const original, double const * const sorted, const int N)
+template <class T>
+bool VerifySortedUnique(T const * const original, T const * const sorted, const int N)
 {
     // Make sure every element of the original array is present in the sorted one
     // Make a temporary copy of the arrays
-    double *tmp_orig = new double[N];
-    double *tmp_sort = new double[N];
-    memcpy(tmp_orig, original, N*sizeof(double));
-    memcpy(tmp_sort, sorted,   N*sizeof(double));
+    T *tmp_orig = new T[N];
+    T *tmp_sort = new T[N];
+    memcpy(tmp_orig, original, N*sizeof(T));
+    memcpy(tmp_sort, sorted,   N*sizeof(T));
     // Flag every element of the (copied) arrays that match.
     for (int i = 0 ; i < N ; i++)
     {
