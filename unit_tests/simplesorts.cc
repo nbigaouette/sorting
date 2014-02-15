@@ -21,10 +21,7 @@ TEST(SimpleSorts, InsertionSort)
     to_sort_data[3] = 44.3;
     to_sort_data[4] = 10.3;
 
-    for (int i = 0 ; i < N ; i++)
-    {
-        sorted_data[i] = to_sort_data[i];
-    }
+    memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
     InsertionSort(sorted_data, N);
 
