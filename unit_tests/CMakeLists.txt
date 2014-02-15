@@ -10,6 +10,7 @@ set(SOURCES "")
 set(HEADERS "")
 
 list(APPEND SOURCES "simplesorts.cc")
+list(APPEND HEADERS "verifyarrays.h")
 
 
 # See https://github.com/dmonopoly/gtest-cmake-example
