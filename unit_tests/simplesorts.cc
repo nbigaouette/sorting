@@ -30,8 +30,8 @@ TEST(SimpleSorts, InsertionSort)
     std::cout << "Index Original     Sorted " << std::endl;
     for (int i = 0 ; i < N ; i++)
     {
-        std::cout << i+1 << "/" << N << "   " 
-                    << to_sort_data[i] << "        " 
+        std::cout << i+1 << "/" << N << "   "
+                    << to_sort_data[i] << "        "
                     << sorted_data[i] << std::endl;
     }
 #endif // quiet
