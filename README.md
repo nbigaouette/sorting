@@ -2,6 +2,7 @@ sorting
 -------------------------
 
 This is a simple C++ template library implementing different sorting algorithms.
+Sorting functions are encapsulated into namespaces.
 
 
 Usage
