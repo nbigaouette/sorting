@@ -1,6 +1,8 @@
 #ifndef SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 #define SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 
+namespace simplesorts {
+
 template <class T>
 void SelectionSort(T * const array, const int N)
 /**
@@ -27,5 +29,7 @@ void SelectionSort(T * const array, const int N)
         std::swap(array[i], array[smallest_j]);
     }
 }
+
+} // namespace simplesorts
 
 #endif  // SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_

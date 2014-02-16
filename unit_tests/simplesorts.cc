@@ -26,7 +26,7 @@ TEST(SimpleSorts, InsertionSort)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
-    InsertionSort(sorted_data, N);
+    simplesorts::InsertionSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;
@@ -72,7 +72,7 @@ TEST(SimpleSorts, InsertionSortBestCase)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(int));
 
-    InsertionSort(sorted_data, N);
+    simplesorts::InsertionSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;
@@ -115,7 +115,7 @@ TEST(SimpleSorts, InsertionSortWorstCase)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(int));
 
-    InsertionSort(sorted_data, N);
+    simplesorts::InsertionSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;
@@ -161,7 +161,7 @@ TEST(SimpleSorts, SelectionSort)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
-    SelectionSort(sorted_data, N);
+    simplesorts::SelectionSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;

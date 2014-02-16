@@ -1,6 +1,8 @@
 #ifndef SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
 #define SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
 
+namespace simplesorts {
+
 template <class T>
 void InsertionSort(T * const array, const int N)
 {
@@ -46,5 +48,7 @@ void InsertionSort(T * const array, const int N)
         }
     }
 }
+
+} // namespace simplesorts
 
 #endif  // SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
