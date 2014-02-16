@@ -33,13 +33,13 @@ TEST(VerifyArray, VerifyIfOrdered)
 
     data[0] = 1.3;
     data[1] = 10.3;
-    data[2] = 21.3;
+    data[2] = 44.3;
     data[3] = 44.3;
     data[4] = 68.2;
 
     ASSERT_TRUE(VerifyIfOrdered(data, N));
 
-    data[0] = 21.3;
+    data[0] = 44.3;
     data[1] = 68.2;
     data[2] = 1.3;
     data[3] = 44.3;
