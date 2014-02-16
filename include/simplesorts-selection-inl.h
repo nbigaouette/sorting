@@ -7,7 +7,11 @@ template <class T>
 void SelectionSort(T * const array, const int N)
 /**
  * Simple sorts: Selection sort
- * Scaling: O(n^2) (note the nested loop)
+ * Scaling:
+ *      Best case:  O(N^2) (note the nested loop)
+ *      Worst case: Same
+ * Useful:
+ *      When swapping is expensive, as there is maximum of N swaps.
  */
 {
     // Loop over all elements

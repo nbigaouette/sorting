@@ -5,6 +5,15 @@ namespace simplesorts {
 
 template <class T>
 void InsertionSort(T * const array, const int N)
+/**
+ * Simple sorts: Insertion sort
+ * Scaling:
+ *      Best case:  O(N)        When array is already sorted
+ *      Worst case: O(N^2)      When array is sorted in reverse order
+ * Useful:
+ *      In place
+ *      Good when array is small
+ */
 {
     // Temporary value used during sorting
     T tmp;
