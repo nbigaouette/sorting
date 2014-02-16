@@ -9,9 +9,10 @@ project(libsorting_utests)
 set(SOURCES "")
 set(HEADERS "")
 
-list(APPEND SOURCES "simplesorts.cc")
-list(APPEND SOURCES "validate_verifyarray.cc")
 list(APPEND HEADERS "verifyarrays.h")
+list(APPEND SOURCES "validate_verifyarray.cc")
+list(APPEND SOURCES "simplesorts.cc")
+list(APPEND SOURCES "efficientsorts.cc")
 
 
 # See https://github.com/dmonopoly/gtest-cmake-example

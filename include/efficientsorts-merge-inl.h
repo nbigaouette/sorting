@@ -5,9 +5,9 @@ namespace sorting {
 namespace efficient {
 
 template <class T>
-void MergeSort(T * const array, const int N)
+void MergeSortRecursive(T * const array, const int N)
 /**
- * Efficient sorts: Merge sort
+ * Efficient sorts: Merge sort (recursive, bottom-up)
  * Scaling:
  *      Best case:  O(N log N)
  *      Worst case: O(N log N)
