@@ -1,7 +1,8 @@
 #ifndef SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 #define SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 
-namespace simplesorts {
+namespace sorting {
+namespace simple {
 
 template <class T>
 void SelectionSort(T * const array, const int N)
@@ -34,6 +35,7 @@ void SelectionSort(T * const array, const int N)
     }
 }
 
-} // namespace simplesorts
+} // namespace simple
+} // namespace sorting
 
 #endif  // SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
