@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-#include "simplesorts.h"
+#include "sorting.h"
 #include "printarray.h"
 #include "verifyarrays.h"
 
