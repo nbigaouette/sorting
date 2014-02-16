@@ -1,5 +1,5 @@
-#ifndef SORTING_INCLUDE_SIMPLESORT_INSERTION_INL_H_
-#define SORTING_INCLUDE_SIMPLESORT_INSERTION_INL_H_
+#ifndef SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
+#define SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
 
 template <class T>
 void InsertionSort(T * const array, const int N)
@@ -47,4 +47,4 @@ void InsertionSort(T * const array, const int N)
     }
 }
 
-#endif  // SORTING_INCLUDE_SIMPLESORT_INSERTION_INL_H_
+#endif  // SORTING_INCLUDE_SIMPLESORTS_INSERTION_INL_H_
