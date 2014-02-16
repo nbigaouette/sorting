@@ -1,4 +1,4 @@
-#include <iostream>   // std::cout
+#include <iostream>     // std::cout
 
 #include "gtest/gtest.h"
 
@@ -8,6 +8,7 @@
 
 #define quiet
 
+// *********************************************************************
 TEST(SimpleSorts, InsertionSort)
 {
     const int N = 5;
@@ -53,6 +54,7 @@ TEST(SimpleSorts, InsertionSort)
     delete[] sorted_data;
 }
 
+// *********************************************************************
 TEST(SimpleSorts, InsertionSortBestCase)
 {
     // Best case is O(N) when array already sorted
@@ -95,7 +97,7 @@ TEST(SimpleSorts, InsertionSortBestCase)
 
 }
 
-
+// *********************************************************************
 TEST(SimpleSorts, InsertionSortWorstCase)
 {
     // Worst case is O(N^2) when array already sorted, but in reverse order.
