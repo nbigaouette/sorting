@@ -1,6 +1,8 @@
 #ifndef SORTING_UNIT_TESTS_VERIFYARRAYS_H_
 #define SORTING_UNIT_TESTS_VERIFYARRAYS_H_
 
+#include <cmath>
+
 template <class T>
 bool VerifyIfAllNotNaN(T const * const sorted, const int N)
 {

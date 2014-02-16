@@ -1,8 +1,6 @@
 #ifndef SORTING_INCLUDE_SIMPLESORT_INSERTION_INL_H_
 #define SORTING_INCLUDE_SIMPLESORT_INSERTION_INL_H_
 
-#include <cmath>
-
 template <class T>
 void InsertionSort(T * const array, const int N)
 {
@@ -19,10 +17,11 @@ void InsertionSort(T * const array, const int N)
         {
             // Temporarely store the element to sort
             tmp = array[i];
-            array[i] = NAN;
+            //array[i] = 1234567890; // Debug: set to a value to track it.
 
             // Go back in the array, starting with previous value.
-            for (int j = i-1 ; j >= 0 ; j--)
+            int j;
+            for (j = i-1 ; j >= 0 ; j--)
             {
                 // If stored value is larger than array value, place stored value after
                 if (tmp >= array[j])
@@ -34,13 +33,13 @@ void InsertionSort(T * const array, const int N)
                 {
                     // Move element up
                     array[j+1] = array[j];
-                    array[j] = NAN;
+                    //array[j] = 1234567890; // Debug: set to a value to track it.
                 }
             }
-            // If the first element is NaN, then the previous loop ended without
-            // finding a smaller number than the one stored. In that case, it is
-            // the smallest! Place it at the begining.
-            if (isnan(array[0]))
+            // If the loop index "j" is -1, the previous loop ended without hiting
+            // the break steatement, meaning we hit the start of the array. In that
+            // case, place the stored element there.
+            if (j == -1)
             {
                 array[0] = tmp;
             }
