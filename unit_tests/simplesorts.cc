@@ -94,3 +94,46 @@ TEST(SimpleSorts, InsertionSortBestCase)
     delete[] sorted_data;
 
 }
+
+
+TEST(SimpleSorts, InsertionSortWorstCase)
+{
+    // Worst case is O(N^2) when array already sorted, but in reverse order.
+    const int N = 1000;
+
+    int *to_sort_data = new int[N];
+    int *sorted_data  = new int[N];
+
+    for (int i = 0 ; i < N ; i++)
+    {
+        to_sort_data[i] = N-i;
+    }
+
+    memcpy(sorted_data, to_sort_data, N*sizeof(int));
+
+    InsertionSort(sorted_data, N);
+
+#ifndef quiet
+    std::cout << "Arrays" << std::endl;
+    std::cout << "Index Original     Sorted " << std::endl;
+    for (int i = 0 ; i < N ; i++)
+    {
+        std::cout << i+1 << "/" << N << "   "
+                    << to_sort_data[i] << "        "
+                    << sorted_data[i] << std::endl;
+    }
+#endif // quiet
+
+    for (int i = 1 ; i < N ; i++)
+    {
+        EXPECT_GE(sorted_data[i], sorted_data[i-1]);
+    }
+
+    ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
+    ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
+    ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
+
+    delete[] to_sort_data;
+    delete[] sorted_data;
+
+}
