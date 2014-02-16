@@ -55,7 +55,7 @@ TEST(SimpleSorts, InsertionSort)
 
 TEST(SimpleSorts, InsertionSortBestCase)
 {
-    // Best case should be O(N) when array already sorted
+    // Best case is O(N) when array already sorted
     const int N = 1000;
 
     int *to_sort_data = new int[N];
