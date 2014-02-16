@@ -161,7 +161,7 @@ TEST(SimpleSorts, SelectionSort)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
-    InsertionSort(sorted_data, N);
+    SelectionSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;
