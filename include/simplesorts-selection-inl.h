@@ -1,6 +1,8 @@
 #ifndef SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 #define SORTING_INCLUDE_SIMPLESORTS_SELECTION_INL_H_
 
+#include <utility> // std::swap()
+
 namespace sorting {
 namespace simple {
 
