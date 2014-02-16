@@ -27,8 +27,5 @@ list(APPEND HEADERS "include/simplesorts.h")
 
 include_directories(${MAIN_PROJECT_PATH}/include)
 
-########################################################################################
-# Dynamic library linking
-#add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
-
+# Include unit tests
 add_subdirectory(unit_tests)
