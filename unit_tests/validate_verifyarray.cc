@@ -50,3 +50,31 @@ TEST(VerifyArray, VerifyIfOrdered)
     delete[] data;
 }
 
+TEST(VerifyArray, VerifySortedUnique)
+{
+    const int N = 5;
+    double *data   = new double[N];
+    double *sorted = new double[N];
+
+    data[0] = 1.3;
+    data[1] = 10.3;
+    data[2] = 21.3;
+    data[3] = 44.3;
+    data[4] = 68.2;
+
+    sorted[0] = 1.3;
+    sorted[1] = 10.3;
+    sorted[2] = 21.3;
+    sorted[3] = 44.3;
+    sorted[4] = 68.2;
+
+    ASSERT_TRUE(VerifySortedUnique(data, sorted, N));
+
+    sorted[2] = 12345678.9;
+
+    ASSERT_FALSE(VerifySortedUnique(data, sorted, N));
+
+    delete[] data;
+    delete[] sorted;
+}
+
