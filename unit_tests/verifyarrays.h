@@ -34,41 +34,56 @@ bool VerifySortedUnique(T const * const original, T const * const sorted, const 
 {
     // Make sure every element of the original array is present in the sorted one
     // Make a temporary copy of the arrays
-    T *tmp_orig = new T[N];
-    T *tmp_sort = new T[N];
-    memcpy(tmp_orig, original, N*sizeof(T));
-    memcpy(tmp_sort, sorted,   N*sizeof(T));
+    int *i_orig = new int[N];
+    for (int i = 0 ; i < N ; i++)
+    {
+        i_orig[i] = -1;
+    }
     // Flag every element of the (copied) arrays that match.
     for (int i = 0 ; i < N ; i++)
     {
         for (int j = 0 ; j < N ; j++)
         {
-            // Note that NAN != NAN
-            if (tmp_orig[i] == tmp_sort[j])
+            if (original[i] == sorted[j])
             {
-                tmp_orig[i] = NAN;
-                tmp_sort[j] = NAN;
-                break;
+                // We found a matching element. Verify if this element is not a dupplicate.
+                bool duplicate = false;
+                for (int k = 0 ; k < i ; k++)
+                {
+                    if (i_orig[k] == j)
+                    {
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (not duplicate)
+                {
+                    i_orig[i] = j;
+                    break;
+                }
             }
         }
     }
-    // Now verify if one element of the temporary arrays is _not_ NaN.
-    // In that case, something went wrong!
+
+    // Now verify that every element was found
+    bool is_unique = true;
     for (int i = 0 ; i < N ; i++)
     {
-        if (not isnan(tmp_orig[i]))
+        if (i_orig[i] == -1)
         {
-            return false;
-        }
-        if (not isnan(tmp_sort[i]))
-        {
-            return false;
+            is_unique = false;
         }
     }
-    delete[] tmp_orig;
-    delete[] tmp_sort;
+    delete[] i_orig;
 
-    return true;
+    if (is_unique)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
