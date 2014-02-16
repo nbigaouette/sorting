@@ -1,3 +1,5 @@
+#include <stdlib.h>     // rand()
+#include <time.h>       // time()
 #include <iostream>   // std::cout
 
 #include "gtest/gtest.h"
@@ -140,16 +142,20 @@ TEST(SimpleSorts, InsertionSortWorstCase)
 
 TEST(SimpleSorts, SelectionSort)
 {
-    const int N = 5;
+    const int N = 1000;
 
     double *to_sort_data = new double[N];
     double *sorted_data  = new double[N];
 
-    to_sort_data[0] = 21.3;
-    to_sort_data[1] = 68.2;
-    to_sort_data[2] = 1.3;
-    to_sort_data[3] = 44.3;
-    to_sort_data[4] = 10.3;
+    // Initialize the array with random values between 1 and 100
+    // NOTE: rand() is a terrible pseudo-random number generator (PRNG).
+    // It is still used here for a simple testing task, but don't use it
+    // for anything serious.
+    srand(time(NULL));
+    for (int i = 0 ; i < N ; i++)
+    {
+        to_sort_data[0] = rand() % 100 + 1;
+    }
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
