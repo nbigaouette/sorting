@@ -25,7 +25,7 @@ TEST(EfficientSorts, MergeSortRecursive)
     srand(time(NULL));
     for (int i = 0 ; i < N ; i++)
     {
-        to_sort_data[0] = rand() % 100 + 1;
+        to_sort_data[i] = rand() % 100 + 1;
     }
     to_sort_data[0] = 6.0;
     to_sort_data[1] = 5.0;
