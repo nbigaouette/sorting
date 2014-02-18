@@ -7,7 +7,7 @@ namespace efficient {
 template <class T>
 void MergeSort(T * const array, const int N)
 /**
- * Efficient sorts: Merge sort (non-recursive, bottom-up)
+ * Efficient sorts: Merge sort (non-recursive)
  * Scaling:
  *      Best case:  O(N log N)
  *      Worst case: O(N log N)
