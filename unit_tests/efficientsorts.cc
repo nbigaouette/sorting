@@ -34,7 +34,7 @@ TEST(EfficientSorts, MergeSortRecursive)
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
-    sorting::efficient::MergeSortRecursive(sorted_data, N);
+    sorting::efficient::MergeSort(sorted_data, N);
 
 #ifndef quiet
     std::cout << "Arrays" << std::endl;
