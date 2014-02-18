@@ -28,9 +28,9 @@ target_link_libraries(${PROJECT_NAME} gtest gtest_main)
 # Extra linking for the project.
 target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBRARY_NAME})
 
-# Run unit tests
-add_custom_target( test  DEPENDS ${PROJECT_NAME} COMMAND          ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME})
 set(VALGRIND    valgrind --tool=memcheck --leak-check=full --show-reachable=yes)
 
+# Compile and run unit tests
+add_custom_target(test DEPENDS ${PROJECT_NAME} COMMAND             ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}  COMMENT "Compile and run unit tests")
 # Compile and run unit tests through valgrind
 add_custom_target(val  DEPENDS ${PROJECT_NAME} COMMAND ${VALGRIND} ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}  COMMENT "Compile and run unit tests through valgrind")
