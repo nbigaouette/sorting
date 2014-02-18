@@ -17,7 +17,6 @@ void MergeSort(T * const array, const int N)
  *      large arrays.
  */
 {
-    PrintArray(array, N);
 
     T *tmp_array = new T[N];
 
