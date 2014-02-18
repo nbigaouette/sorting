@@ -11,7 +11,7 @@
 #define quiet
 
 // *********************************************************************
-TEST(EfficientSorts, MergeSortRecursive)
+TEST(EfficientSorts, MergeSort)
 {
     const int N = 4;
 
