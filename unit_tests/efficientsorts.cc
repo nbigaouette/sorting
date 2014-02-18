@@ -92,7 +92,7 @@ TEST(EfficientSorts, MergeSortMultipleSizes)
 
         sorting::efficient::MergeSort(sorted_data, N);
 
-//#ifndef quiet
+#ifndef quiet
         std::cout << "Arrays" << std::endl;
         std::cout << "Index Original     Sorted " << std::endl;
         for (int i = 0 ; i < N ; i++)
@@ -101,7 +101,7 @@ TEST(EfficientSorts, MergeSortMultipleSizes)
                         << to_sort_data[i] << "        "
                         << sorted_data[i] << std::endl;
         }
-//#endif // quiet
+#endif // quiet
 
         for (int i = 1 ; i < N ; i++)
         {
