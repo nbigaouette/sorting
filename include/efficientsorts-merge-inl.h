@@ -48,23 +48,26 @@ void MergeSort(T * const array, const int N)
             int ri = (sai+1)*level_size;    // Right subarray's starting index of global array
 
             // Loop over the subarray's elements
-            for (int i = sai*level_size ; i < (sai+2)*level_size ; i++)
+            //for (int i = sai*level_size ; i < (sai+2)*level_size-(N%2) ; i++)
+            for (int i = sai*level_size ; i < std::min((sai+2)*level_size, N) ; i++)
             {
-                if (li == (sai+1)*level_size)
+                // Take the element from the left subarray or from the right one?)
+                bool take_left;
+
+                // All subelements of the left subarray are exhausted. Use the left array value.
+                if (li == (sai+1)*level_size)           take_left = false;
+                // All subelements of the right subarray are exhausted. Use the right array value.
+                else if (ri == (sai+2)*level_size)      take_left = true;
+                // The right subarray is empty
+                else if (ri >= N)                       take_left = true;
+                // The left subarray is empty
+                else if (li >= (sai+1)*level_size)      take_left = false;
+                // Compare elements
+                else if (to_sort[li] <= to_sort[ri])    take_left = true;
+                else /*  to_sort[li] >  to_sort[ri] */  take_left = false;
+
+                if (take_left)
                 {
-                    // All subelements of the left subarray are exhausted. Use the left array value.
-                    new_array[i] = to_sort[ri];
-                    ri++;
-                }
-                else if (ri == (sai+2)*level_size)
-                {
-                    // All subelements of the right subarray are exhausted. Use the right array value.
-                    new_array[i] = to_sort[li];
-                    li++;
-                }
-                else if (to_sort[li] <= to_sort[ri])
-                {
-                    // Use "<=" for stability
                     new_array[i] = to_sort[li];
                     li++;
                 }
@@ -73,6 +76,7 @@ void MergeSort(T * const array, const int N)
                     new_array[i] = to_sort[ri];
                     ri++;
                 }
+
                 assert(li <= N+1);
                 assert(ri <= N+1);
             }
@@ -80,6 +84,13 @@ void MergeSort(T * const array, const int N)
 
         level_i++;
         level_size *= 2;
+    }
+
+    // Copy the temporary array back to the original one if it was the last
+    // one to be updated.
+    if ((level_i % 2) != 0)
+    {
+        memcpy(array, tmp_array, N*sizeof(T));
     }
     delete[] tmp_array;
 }
