@@ -13,7 +13,7 @@
 // *********************************************************************
 TEST(EfficientSorts, MergeSortRecursive)
 {
-    const int N = 1000;
+    const int N = 4;
 
     double *to_sort_data = new double[N];
     double *sorted_data  = new double[N];
@@ -27,6 +27,10 @@ TEST(EfficientSorts, MergeSortRecursive)
     {
         to_sort_data[0] = rand() % 100 + 1;
     }
+    to_sort_data[0] = 6.0;
+    to_sort_data[1] = 5.0;
+    to_sort_data[2] = 3.0;
+    to_sort_data[3] = 1.0;
 
     memcpy(sorted_data, to_sort_data, N*sizeof(double));
 
