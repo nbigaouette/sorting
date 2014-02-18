@@ -18,6 +18,11 @@ void MergeSort(T * const array, const int N)
  */
 {
 
+    if (N == 1)
+    {
+        return;
+    }
+
     T *tmp_array = new T[N];
 
     // Pointers to begining of each arrays, pointing to the original array
