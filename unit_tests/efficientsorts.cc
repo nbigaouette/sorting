@@ -63,3 +63,60 @@ TEST(EfficientSorts, MergeSort)
     delete[] to_sort_data;
     delete[] sorted_data;
 }
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortMultipleSizes)
+{
+    const double to_sorts[] = {6.0, 5.0, 3.0, 1.0, 2.4, 4.0, 10.0, 7.0};
+
+    for (int N = 1 ; N < 8 ; N++)
+    {
+        double *to_sort_data = new double[N];
+        double *sorted_data  = new double[N];
+
+        // Initialize the array with random values between 1 and 100
+        // NOTE: rand() is a terrible pseudo-random number generator (PRNG).
+        // It is still used here for a simple testing task, but don't use it
+        // for anything serious.
+        srand(time(NULL));
+        for (int i = 0 ; i < N ; i++)
+        {
+            to_sort_data[i] = rand() % 100 + 1;
+        }
+        for (int i = 0 ; i < N ; i++)
+        {
+            to_sort_data[i] = to_sorts[i];
+        }
+
+        memcpy(sorted_data, to_sort_data, N*sizeof(double));
+
+        sorting::efficient::MergeSort(sorted_data, N);
+
+//#ifndef quiet
+        std::cout << "Arrays" << std::endl;
+        std::cout << "Index Original     Sorted " << std::endl;
+        for (int i = 0 ; i < N ; i++)
+        {
+            std::cout << i+1 << "/" << N << "   "
+                        << to_sort_data[i] << "        "
+                        << sorted_data[i] << std::endl;
+        }
+//#endif // quiet
+
+        for (int i = 1 ; i < N ; i++)
+        {
+            EXPECT_GE(sorted_data[i], sorted_data[i-1]);
+        }
+
+        for (int i = 0 ; i < N ; i++)
+        {
+            EXPECT_NE(sorted_data[i], 0);
+        }
+        ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
+        ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
+        ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
+
+        delete[] to_sort_data;
+        delete[] sorted_data;
+    }
+}
