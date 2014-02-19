@@ -13,6 +13,15 @@ TEST(EfficientSorts, MergeSortMultipleSizesDouble)
 }
 
 // *********************************************************************
+TEST(EfficientSorts, MergeSortMultipleSizesInt)
+{
+    const double to_sorts[] = {6,  5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS(16, int, to_sorts, sorting::efficient::MergeSort, false);
+}
+
+// *********************************************************************
 TEST(EfficientSorts, MergeSortKnownResultDouble)
 {
     const double to_sorts[] = {6.0,   5.0,  3.0,  1.0,  2.4, 4.0, 10.0, 7.0,
@@ -24,7 +33,24 @@ TEST(EfficientSorts, MergeSortKnownResultDouble)
 }
 
 // *********************************************************************
+TEST(EfficientSorts, MergeSortKnownResultInt)
+{
+    const double to_sorts[] = {6,   5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
+    const double known_sorted[] = { 1, 2,  2,  3,  3,  3,  4,  5,
+                                    6, 7, 10, 32, 44, 44,  56, 67};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(16, int, to_sorts, known_sorted, sorting::efficient::MergeSort, false);
+}
+
+// *********************************************************************
 TEST(EfficientSorts, MergeSortMultipleSizesRandomDouble)
 {
     VERIFY_SORTING_RANDOM_ARRAYS(100, double, sorting::efficient::MergeSort, false)
+}
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortMultipleSizesRandomInt)
+{
+    VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::efficient::MergeSort, false)
 }
