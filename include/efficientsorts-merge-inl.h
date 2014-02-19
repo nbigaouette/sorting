@@ -82,8 +82,6 @@ void MergeSort(T * const array, const int N)
                     ri++;
                 }
 
-                assert(li <= N+1);
-                assert(ri <= N+1);
             }
         }
 
