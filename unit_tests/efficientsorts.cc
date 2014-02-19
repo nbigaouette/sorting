@@ -54,3 +54,28 @@ TEST(EfficientSorts, MergeSortMultipleSizesRandomInt)
 {
     VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::efficient::MergeSort, false)
 }
+
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortSortedDouble)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, double, sorting::efficient::MergeSort, false);
+}
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortSortedInt)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, int, sorting::efficient::MergeSort, false);
+}
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortInvSortedDouble)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, double, sorting::efficient::MergeSort, false);
+}
+
+// *********************************************************************
+TEST(EfficientSorts, MergeSortInvSortedInt)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, int, sorting::efficient::MergeSort, false);
+}
