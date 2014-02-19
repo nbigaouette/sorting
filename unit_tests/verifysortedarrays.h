@@ -97,14 +97,14 @@
     memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
                                                                     \
     SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
-                                                                    \
-    for (int i = 0 ; i < N ; i++)                                   \
-    {                                                               \
-        ASSERT_EQ(sorted_data[i], known_sorted[i]);                 \
-    }                                                               \
-                                                                    \
-    delete[] to_sort_data;                                          \
-    delete[] sorted_data;                                           \
+                                                                        \
+    for (int i = 0 ; i < N ; i++)                                       \
+    {                                                                   \
+        ASSERT_EQ(sorted_data[i], known_sorted[i]);                     \
+    }                                                                   \
+                                                                        \
+    delete[] to_sort_data;                                              \
+    delete[] sorted_data;                                               \
 }
 
 #endif  // SORTING_UNIT_TESTS_VERIFYSORTEDARRAYS_H_
