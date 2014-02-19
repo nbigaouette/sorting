@@ -31,5 +31,5 @@ TEST(EfficientSorts, MergeSortMultipleSizes)
 // *********************************************************************
 TEST(EfficientSorts, MergeSortMultipleSizesRandom)
 {
-    VERIFY_RANDOM_ARRAYS(100, sorting::efficient::MergeSort)
+    VERIFY_SORTING_RANDOM_ARRAYS(100, sorting::efficient::MergeSort, false)
 }

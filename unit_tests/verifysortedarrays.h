@@ -39,7 +39,7 @@
     VALIDATE_SORTING(to_sort_data, sorted_data, N);                     \
 }
 
-#define VERIFY_RANDOM_ARRAYS(Nmax, SortingFunction)                     \
+#define VERIFY_SORTING_RANDOM_ARRAYS(Nmax, SortingFunction, verbose)    \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
         double *to_sort_data = new double[N];                           \
@@ -59,7 +59,7 @@
                                                                         \
         memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
                                                                         \
-        SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, false); \
+        SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
         delete[] to_sort_data;                                          \
         delete[] sorted_data;                                           \
