@@ -132,4 +132,25 @@
     }                                                                   \
 }
 
+#define VERIFY_SORTING_INV_SORTED_ARRAY(Nmax, type, SortingFunction, verbose) \
+{                                                                       \
+    for (int N = 1 ; N < Nmax ; N++)                                    \
+    {                                                                   \
+        type *to_sort_data = new type[N];                               \
+        type *sorted_data  = new type[N];                               \
+                                                                        \
+        for (int i = 0 ; i < N ; i++)                                   \
+        {                                                               \
+            to_sort_data[i] = N-i;                                      \
+        }                                                               \
+                                                                        \
+        memcpy(sorted_data, to_sort_data, N*sizeof(type));              \
+                                                                        \
+        SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
+                                                                        \
+        delete[] to_sort_data;                                          \
+        delete[] sorted_data;                                           \
+    }                                                                   \
+}
+
 #endif  // SORTING_UNIT_TESTS_VERIFYSORTEDARRAYS_H_
