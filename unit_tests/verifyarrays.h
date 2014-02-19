@@ -23,7 +23,7 @@ bool VerifyIfOrdered(T const * const sorted, const int N)
     // Make sure array is ordered
     for (int i = 1 ; i < N ; i++)
     {
-        if (sorted[i] <= sorted[i-1])
+        if (sorted[i-1] > sorted[i])
         {
             return false;
         }
