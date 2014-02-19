@@ -39,11 +39,12 @@
     VALIDATE_SORTING(to_sort_data, sorted_data, N);                     \
 }
 
-#define VERIFY_SORTING_RANDOM_ARRAYS(Nmax, SortingFunction, verbose)    \
+#define VERIFY_SORTING_RANDOM_ARRAYS(Nmax, type, SortingFunction, verbose) \
+{                                                                       \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
-        double *to_sort_data = new double[N];                           \
-        double *sorted_data  = new double[N];                           \
+        type *to_sort_data = new type[N];                               \
+        type *sorted_data  = new type[N];                               \
                                                                         \
         /*
         Initialize the array with random values between 1 and 100       \
@@ -57,45 +58,48 @@
             to_sort_data[i] = rand() % 100 + 1;                         \
         }                                                               \
                                                                         \
-        memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
+        memcpy(sorted_data, to_sort_data, N*sizeof(type));              \
                                                                         \
         SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
         delete[] to_sort_data;                                          \
         delete[] sorted_data;                                           \
-    }
+    }                                                                   \
+}
 
-#define VERIFY_SORTING_FIXED_SIZE_ARRAYS(Nmax, to_sorts, SortingFunction, verbose) \
+#define VERIFY_SORTING_FIXED_SIZE_ARRAYS(Nmax, type, to_sorts, SortingFunction, verbose) \
+{                                                                       \
     for (int N = 1 ; N <= Nmax ; N++)                                   \
     {                                                                   \
-        double *to_sort_data = new double[N];                           \
-        double *sorted_data  = new double[N];                           \
+        type *to_sort_data = new type[N];                               \
+        type *sorted_data  = new type[N];                               \
                                                                         \
         for (int i = 0 ; i < N ; i++)                                   \
         {                                                               \
             to_sort_data[i] = to_sorts[i];                              \
         }                                                               \
                                                                         \
-        memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
+        memcpy(sorted_data, to_sort_data, N*sizeof(type));              \
                                                                         \
         SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
         delete[] to_sort_data;                                          \
         delete[] sorted_data;                                           \
-    }
+    }                                                                   \
+}
 
-#define VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(N, to_sort, known_sorted, SortingFunction, verbose) \
-{                                                                   \
-    double *to_sort_data = new double[N];                           \
-    double *sorted_data  = new double[N];                           \
-                                                                    \
-    for (int i = 0 ; i < N ; i++)                                   \
-    {                                                               \
-        to_sort_data[i] = to_sort[i];                               \
-    }                                                               \
-                                                                    \
-    memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
-                                                                    \
+#define VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(N, type, to_sort, known_sorted, SortingFunction, verbose) \
+{                                                                       \
+    type *to_sort_data = new type[N];                                   \
+    type *sorted_data  = new type[N];                                   \
+                                                                        \
+    for (int i = 0 ; i < N ; i++)                                       \
+    {                                                                   \
+        to_sort_data[i] = to_sort[i];                                   \
+    }                                                                   \
+                                                                        \
+    memcpy(sorted_data, to_sort_data, N*sizeof(type));                  \
+                                                                        \
     SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
     for (int i = 0 ; i < N ; i++)                                       \
