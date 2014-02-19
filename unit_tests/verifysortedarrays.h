@@ -39,7 +39,7 @@
     VALIDATE_SORTING(to_sort_data, sorted_data, N);                     \
 }
 
-#define VERIFY_SORTING_RANDOM_ARRAYS(Nmax, type, SortingFunction, verbose) \
+#define VERIFY_SORTING_INPLACE_RANDOM_ARRAYS(Nmax, type, SortingFunction, verbose) \
 {                                                                       \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
@@ -67,7 +67,7 @@
     }                                                                   \
 }
 
-#define VERIFY_SORTING_FIXED_SIZE_ARRAYS(Nmax, type, to_sorts, SortingFunction, verbose) \
+#define VERIFY_SORTING_INPLACE_FIXED_SIZE_ARRAYS(Nmax, type, to_sorts, SortingFunction, verbose) \
 {                                                                       \
     for (int N = 1 ; N <= Nmax ; N++)                                   \
     {                                                                   \
@@ -88,7 +88,7 @@
     }                                                                   \
 }
 
-#define VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(N, type, to_sort, known_sorted, SortingFunction, verbose) \
+#define VERIFY_SORTING_INPLACE_FIXED_SIZE_ARRAYS_AND_COMPARE(N, type, to_sort, known_sorted, SortingFunction, verbose) \
 {                                                                       \
     type *to_sort_data = new type[N];                                   \
     type *sorted_data  = new type[N];                                   \
@@ -111,7 +111,7 @@
     delete[] sorted_data;                                               \
 }
 
-#define VERIFY_SORTING_SORTED_ARRAY(Nmax, type, SortingFunction, verbose) \
+#define VERIFY_SORTING_INPLACE_SORTED_ARRAY(Nmax, type, SortingFunction, verbose) \
 {                                                                       \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
@@ -132,7 +132,7 @@
     }                                                                   \
 }
 
-#define VERIFY_SORTING_INV_SORTED_ARRAY(Nmax, type, SortingFunction, verbose) \
+#define VERIFY_SORTING_INPLACE_INV_SORTED_ARRAY(Nmax, type, SortingFunction, verbose) \
 {                                                                       \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
