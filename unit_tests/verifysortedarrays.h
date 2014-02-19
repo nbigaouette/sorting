@@ -45,10 +45,12 @@
         double *to_sort_data = new double[N];                           \
         double *sorted_data  = new double[N];                           \
                                                                         \
-        /* Initialize the array with random values between 1 and 100    \
-           NOTE: rand() is a terrible pseudo-random number generator (PRNG). \
-           It is still used here for a simple testing task, but don't use it \
-           for anything serious. */                                     \
+        /*
+        Initialize the array with random values between 1 and 100       \
+        NOTE: rand() is a terrible pseudo-random number generator (PRNG). \
+        It is still used here for a simple testing task, but don't use it \
+        for anything serious.
+        */                                                              \
         srand(time(NULL));                                              \
         for (int i = 0 ; i < N ; i++)                                   \
         {                                                               \
