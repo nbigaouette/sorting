@@ -17,7 +17,6 @@ void MergeSort(T * const array, const int N)
  *      large arrays.
  */
 {
-
     if (N == 1)
     {
         return;
