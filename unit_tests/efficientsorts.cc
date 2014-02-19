@@ -46,13 +46,13 @@ TEST(EfficientSorts, MergeSortKnownResultInt)
 // *********************************************************************
 TEST(EfficientSorts, MergeSortMultipleSizesRandomDouble)
 {
-    VERIFY_SORTING_RANDOM_ARRAYS(100, double, sorting::efficient::MergeSort, false)
+    VERIFY_SORTING_RANDOM_ARRAYS(100, double, sorting::efficient::MergeSort, false);
 }
 
 // *********************************************************************
 TEST(EfficientSorts, MergeSortMultipleSizesRandomInt)
 {
-    VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::efficient::MergeSort, false)
+    VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::efficient::MergeSort, false);
 }
 
 
