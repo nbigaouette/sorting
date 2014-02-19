@@ -13,7 +13,7 @@ list(APPEND HEADERS "verifyarrays.h")
 list(APPEND HEADERS "verifsortedyarrays.h")
 list(APPEND SOURCES "validate_verifyarray.cc")
 list(APPEND SOURCES "simplesorts.cc")
-list(APPEND SOURCES "efficientsorts.cc")
+list(APPEND SOURCES "efficientsorts_mergesort.cc")
 list(APPEND SOURCES "efficientsorts_mergesortrecursive.cc")
 
 
