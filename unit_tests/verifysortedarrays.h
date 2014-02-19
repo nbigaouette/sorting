@@ -84,4 +84,27 @@
         delete[] sorted_data;                                           \
     }
 
+#define VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(N, to_sort, known_sorted, SortingFunction, verbose) \
+{                                                                   \
+    double *to_sort_data = new double[N];                           \
+    double *sorted_data  = new double[N];                           \
+                                                                    \
+    for (int i = 0 ; i < N ; i++)                                   \
+    {                                                               \
+        to_sort_data[i] = to_sort[i];                               \
+    }                                                               \
+                                                                    \
+    memcpy(sorted_data, to_sort_data, N*sizeof(double));            \
+                                                                    \
+    SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
+                                                                    \
+    for (int i = 0 ; i < N ; i++)                                   \
+    {                                                               \
+        ASSERT_EQ(sorted_data[i], known_sorted[i]);                 \
+    }                                                               \
+                                                                    \
+    delete[] to_sort_data;                                          \
+    delete[] sorted_data;                                           \
+}
+
 #endif  // SORTING_UNIT_TESTS_VERIFYSORTEDARRAYS_H_
