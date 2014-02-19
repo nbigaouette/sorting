@@ -62,10 +62,10 @@ void MergeSort(T * const array, const int N)
                 if (li == (sai+1)*level_size)           take_left = false;
                 // All subelements of the right subarray are exhausted. Use the right array value.
                 else if (ri == (sai+2)*level_size)      take_left = true;
-                // The right subarray is empty
-                else if (ri >= N)                       take_left = true;
                 // The left subarray is empty
                 else if (li >= (sai+1)*level_size)      take_left = false;
+                // The right subarray is empty
+                else if (ri >= N)                       take_left = true;
                 // Compare elements
                 else if (to_sort[li] <= to_sort[ri])    take_left = true;
                 else /*  to_sort[li] >  to_sort[ri] */  take_left = false;
