@@ -5,190 +5,162 @@
 #include "gtest/gtest.h"
 
 #include "sorting.h"
-#include "printarray.h"
-#include "verifyarrays.h"
+#include "verifysortedarrays.h"
 
 #define quiet
 
+
 // *********************************************************************
-TEST(SimpleSorts, InsertionSort)
+TEST(SimpleSorts, InsertionSortMultipleSizesDouble)
 {
-    const int N = 5;
+    const double to_sorts[] = {6.0,   5.0,  3.0,  1.0,  2.4, 4.0, 10.0, 7.0,
+                               3.42, 32.2, 44.2, 56.3, 67.9, 3.2, 44.2, 2.0};
 
-    double *to_sort_data = new double[N];
-    double *sorted_data  = new double[N];
-
-    to_sort_data[0] = 21.3;
-    to_sort_data[1] = 68.2;
-    to_sort_data[2] = 1.3;
-    to_sort_data[3] = 44.3;
-    to_sort_data[4] = 10.3;
-
-    memcpy(sorted_data, to_sort_data, N*sizeof(double));
-
-    sorting::simple::InsertionSort(sorted_data, N);
-
-#ifndef quiet
-    std::cout << "Arrays" << std::endl;
-    std::cout << "Index Original     Sorted " << std::endl;
-    for (int i = 0 ; i < N ; i++)
-    {
-        std::cout << i+1 << "/" << N << "   "
-                    << to_sort_data[i] << "        "
-                    << sorted_data[i] << std::endl;
-    }
-#endif // quiet
-
-    for (int i = 1 ; i < N ; i++)
-    {
-        EXPECT_GE(sorted_data[i], sorted_data[i-1]);
-    }
-
-    for (int i = 0 ; i < N ; i++)
-    {
-        EXPECT_NE(sorted_data[i], 0);
-    }
-    ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
-    ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
-    ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
-
-    delete[] to_sort_data;
-    delete[] sorted_data;
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS(16, double, to_sorts, sorting::simple::InsertionSort, false);
 }
 
 // *********************************************************************
-TEST(SimpleSorts, InsertionSortBestCase)
+TEST(SimpleSorts, InsertionSortMultipleSizesInt)
 {
-    // Best case is O(N) when array already sorted
-    const int N = 1000;
+    const double to_sorts[] = {6,  5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
 
-    int *to_sort_data = new int[N];
-    int *sorted_data  = new int[N];
-
-    for (int i = 0 ; i < N ; i++)
-    {
-        to_sort_data[i] = i;
-    }
-
-    memcpy(sorted_data, to_sort_data, N*sizeof(int));
-
-    sorting::simple::InsertionSort(sorted_data, N);
-
-#ifndef quiet
-    std::cout << "Arrays" << std::endl;
-    std::cout << "Index Original     Sorted " << std::endl;
-    for (int i = 0 ; i < N ; i++)
-    {
-        std::cout << i+1 << "/" << N << "   "
-                    << to_sort_data[i] << "        "
-                    << sorted_data[i] << std::endl;
-    }
-#endif // quiet
-
-    for (int i = 1 ; i < N ; i++)
-    {
-        EXPECT_GE(sorted_data[i], sorted_data[i-1]);
-    }
-
-    ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
-    ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
-    ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
-
-    delete[] to_sort_data;
-    delete[] sorted_data;
-
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS(16, int, to_sorts, sorting::simple::InsertionSort, false);
 }
 
 // *********************************************************************
-TEST(SimpleSorts, InsertionSortWorstCase)
+TEST(SimpleSorts, InsertionortKnownResultDouble)
 {
-    // Worst case is O(N^2) when array already sorted, but in reverse order.
-    const int N = 1000;
+    const double to_sorts[] = {6.0,   5.0,  3.0,  1.0,  2.4, 4.0, 10.0, 7.0,
+                               3.42, 32.2, 44.2, 56.3, 67.9, 3.2, 44.2, 2.0};
+    const double known_sorted[] = { 1.0, 2.0,  2.4,  3.0,  3.2,  3.42,  4.0,  5.0,
+                                    6.0, 7.0, 10.0, 32.2, 44.2, 44.2,  56.3, 67.9};
 
-    int *to_sort_data = new int[N];
-    int *sorted_data  = new int[N];
-
-    for (int i = 0 ; i < N ; i++)
-    {
-        to_sort_data[i] = N-i;
-    }
-
-    memcpy(sorted_data, to_sort_data, N*sizeof(int));
-
-    sorting::simple::InsertionSort(sorted_data, N);
-
-#ifndef quiet
-    std::cout << "Arrays" << std::endl;
-    std::cout << "Index Original     Sorted " << std::endl;
-    for (int i = 0 ; i < N ; i++)
-    {
-        std::cout << i+1 << "/" << N << "   "
-                    << to_sort_data[i] << "        "
-                    << sorted_data[i] << std::endl;
-    }
-#endif // quiet
-
-    for (int i = 1 ; i < N ; i++)
-    {
-        EXPECT_GE(sorted_data[i], sorted_data[i-1]);
-    }
-
-    ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
-    ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
-    ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
-
-    delete[] to_sort_data;
-    delete[] sorted_data;
-
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(16, double, to_sorts, known_sorted, sorting::simple::InsertionSort, false);
 }
 
-TEST(SimpleSorts, SelectionSort)
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortKnownResultInt)
 {
-    const int N = 1000;
+    const double to_sorts[] = {6,   5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
+    const double known_sorted[] = { 1, 2,  2,  3,  3,  3,  4,  5,
+                                    6, 7, 10, 32, 44, 44,  56, 67};
 
-    double *to_sort_data = new double[N];
-    double *sorted_data  = new double[N];
-
-    // Initialize the array with random values between 1 and 100
-    // NOTE: rand() is a terrible pseudo-random number generator (PRNG).
-    // It is still used here for a simple testing task, but don't use it
-    // for anything serious.
-    srand(time(NULL));
-    for (int i = 0 ; i < N ; i++)
-    {
-        to_sort_data[i] = rand() % 100 + 1;
-    }
-
-    memcpy(sorted_data, to_sort_data, N*sizeof(double));
-
-    sorting::simple::SelectionSort(sorted_data, N);
-
-#ifndef quiet
-    std::cout << "Arrays" << std::endl;
-    std::cout << "Index Original     Sorted " << std::endl;
-    for (int i = 0 ; i < N ; i++)
-    {
-        std::cout << i+1 << "/" << N << "   "
-                    << to_sort_data[i] << "        "
-                    << sorted_data[i] << std::endl;
-    }
-#endif // quiet
-
-    for (int i = 1 ; i < N ; i++)
-    {
-        EXPECT_GE(sorted_data[i], sorted_data[i-1]);
-    }
-
-    for (int i = 0 ; i < N ; i++)
-    {
-        EXPECT_NE(sorted_data[i], 0);
-    }
-    ASSERT_TRUE(VerifyIfAllNotNaN(sorted_data, N));
-    ASSERT_TRUE(VerifyIfOrdered(sorted_data, N));
-    ASSERT_TRUE(VerifySortedUnique(to_sort_data, sorted_data, N));
-
-    delete[] to_sort_data;
-    delete[] sorted_data;
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(16, int, to_sorts, known_sorted, sorting::simple::InsertionSort, false);
 }
 
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortMultipleSizesRandomDouble)
+{
+    VERIFY_SORTING_RANDOM_ARRAYS(100, double, sorting::simple::InsertionSort, false)
+}
 
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortMultipleSizesRandomInt)
+{
+    VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::simple::InsertionSort, false)
+}
+
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortSortedDouble)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, double, sorting::simple::InsertionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortSortedInt)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, int, sorting::simple::InsertionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortInvSortedDouble)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, double, sorting::simple::InsertionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, InsertionSortInvSortedInt)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, int, sorting::simple::InsertionSort, false);
+}
+
+// #####################################################################
+// #####################################################################
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortMultipleSizesDouble)
+{
+    const double to_sorts[] = {6.0,   5.0,  3.0,  1.0,  2.4, 4.0, 10.0, 7.0,
+                               3.42, 32.2, 44.2, 56.3, 67.9, 3.2, 44.2, 2.0};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS(16, double, to_sorts, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortMultipleSizesInt)
+{
+    const double to_sorts[] = {6,  5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS(16, int, to_sorts, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortKnownResultDouble)
+{
+    const double to_sorts[] = {6.0,   5.0,  3.0,  1.0,  2.4, 4.0, 10.0, 7.0,
+                               3.42, 32.2, 44.2, 56.3, 67.9, 3.2, 44.2, 2.0};
+    const double known_sorted[] = { 1.0, 2.0,  2.4,  3.0,  3.2,  3.42,  4.0,  5.0,
+                                    6.0, 7.0, 10.0, 32.2, 44.2, 44.2,  56.3, 67.9};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(16, double, to_sorts, known_sorted, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortKnownResultInt)
+{
+    const double to_sorts[] = {6,   5,  3,  1,  2, 4, 10, 7,
+                               3, 32, 44, 56, 67, 3, 44, 2};
+    const double known_sorted[] = { 1, 2,  2,  3,  3,  3,  4,  5,
+                                    6, 7, 10, 32, 44, 44,  56, 67};
+
+    VERIFY_SORTING_FIXED_SIZE_ARRAYS_AND_COMPARE(16, int, to_sorts, known_sorted, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortMultipleSizesRandomDouble)
+{
+    VERIFY_SORTING_RANDOM_ARRAYS(100, double, sorting::simple::SelectionSort, false)
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortMultipleSizesRandomInt)
+{
+    VERIFY_SORTING_RANDOM_ARRAYS(100, int, sorting::simple::SelectionSort, false)
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortSortedDouble)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, double, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortSortedInt)
+{
+    VERIFY_SORTING_SORTED_ARRAY(100, int, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortInvSortedDouble)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, double, sorting::simple::SelectionSort, false);
+}
+
+// *********************************************************************
+TEST(SimpleSorts, SelectionSortInvSortedInt)
+{
+    VERIFY_SORTING_INV_SORTED_ARRAY(100, int, sorting::simple::SelectionSort, false);
+}
