@@ -3,6 +3,7 @@
 
 #include "gtest/gtest.h"
 
+#include "verifyarrays.h"
 
 #define VALIDATE_SORTING(to_sort_data, sorted_data, N)                  \
 {                                                                       \

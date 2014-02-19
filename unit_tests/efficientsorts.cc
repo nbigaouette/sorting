@@ -5,11 +5,7 @@
 #include "gtest/gtest.h"
 
 #include "sorting.h"
-#include "printarray.h"
-#include "verifyarrays.h"
 #include "verifysortedarrays.h"
-
-#define quiet
 
 // *********************************************************************
 TEST(EfficientSorts, MergeSortMultipleSizes)
