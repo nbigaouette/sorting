@@ -14,6 +14,7 @@ list(APPEND HEADERS "verifsortedyarrays.h")
 list(APPEND SOURCES "validate_verifyarray.cc")
 list(APPEND SOURCES "simplesorts.cc")
 list(APPEND SOURCES "efficientsorts.cc")
+list(APPEND SOURCES "efficientsorts_mergesortrecursive.cc")
 
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})

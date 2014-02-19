@@ -98,6 +98,49 @@ void MergeSort(T * const array, const int N)
     delete[] tmp_array;
 }
 
+template <class T>
+void MergeSortRecursive(T * const array, const int N)
+/**
+ * Efficient sorts: Merge sort (recursive)
+ * Scaling:
+ *      Best case:  O(N log N)
+ *      Worst case: O(N log N)
+ * Useful:
+ * Note:
+ *      An extra array is allocated, so this is not optimal for really
+ *      large arrays.
+ */
+{
+    if (N == 1)
+    {
+        return;
+    }
+    else
+    {
+        const int N_half_left  = (N / 2) + (N % 2);
+        const int N_half_right = N - N_half_left;
+        MergeSortRecursive(array,             N_half_left);
+        MergeSortRecursive(array+N_half_left, N_half_right);
+
+        T *tmp_array   = new T[N];
+        int li = 0;
+        int ri = N_half_left;
+        for (int i = 0 ; i < N ; i++)
+        {
+            bool take_left;
+            if      (li >= N_half_left)         take_left = false;
+            else if (ri >= N)                   take_left = true;
+            else if (array[li] <= array[ri])    take_left = true;
+            else /* (array[li] >  array[ri])*/  take_left = false;
+
+            if (take_left) tmp_array[i] = array[li];
+            else           tmp_array[i] = array[ri];
+        }
+        memccpy(array, tmp_array, N*sizeof(T));
+        delete[] tmp_array;
+    }
+}
+
 } // namespace efficient
 } // namespace sorting
 
