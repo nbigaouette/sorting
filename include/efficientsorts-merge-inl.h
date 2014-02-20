@@ -132,8 +132,16 @@ void MergeSortRecursive(T * const array, const int N)
             else if (array[li] <= array[ri])    take_left = true;
             else /* (array[li] >  array[ri])*/  take_left = false;
 
-            if (take_left) tmp_array[i] = array[li];
-            else           tmp_array[i] = array[ri];
+            if (take_left)
+            {
+                tmp_array[i] = array[li];
+                li++;
+            }
+            else
+            {
+                tmp_array[i] = array[ri];
+                ri++;
+            }
         }
         memccpy(array, tmp_array, N*sizeof(T));
         delete[] tmp_array;
