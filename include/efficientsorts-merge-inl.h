@@ -143,7 +143,7 @@ void MergeSortRecursive(T * const array, const int N)
                 ri++;
             }
         }
-        memccpy(array, tmp_array, N*sizeof(T));
+        memcpy(array, tmp_array, N*sizeof(T));
         delete[] tmp_array;
     }
 }
