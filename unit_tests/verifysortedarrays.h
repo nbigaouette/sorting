@@ -22,7 +22,7 @@
 
 #define SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose) \
 {                                                                       \
-    sorting::efficient::MergeSort(sorted_data, N);                      \
+    SortingFunction(sorted_data, N);                                    \
                                                                         \
     if (verbose)                                                        \
     {                                                                   \
