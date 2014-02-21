@@ -1,6 +1,10 @@
 #ifndef SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 #define SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 
+#include <cstring> // memcpy()
+
+#include <printarray.h>
+
 namespace sorting {
 namespace efficient {
 
@@ -98,7 +102,7 @@ void MergeSort(T * const array, const int N)
 }
 
 template <class T>
-void MergeSortRecursive(T * const array, const int N)
+void MergeSortRecursiveWrap(T * const global_array, const int global_N, T * const array, const int N)
 /**
  * Efficient sorts: Merge sort (recursive)
  * Scaling:
@@ -118,34 +122,107 @@ void MergeSortRecursive(T * const array, const int N)
     {
         const int N_half_left  = (N / 2) + (N % 2);
         const int N_half_right = N - N_half_left;
-        MergeSortRecursive(array,             N_half_left);
-        MergeSortRecursive(array+N_half_left, N_half_right);
 
-        T *tmp_array   = new T[N];
-        int li = 0;
-        int ri = N_half_left;
-        for (int i = 0 ; i < N ; i++)
+        std::cout << "N = " << N << "   N_half_left = " << N_half_left << "  N_half_right = " << N_half_right << std::endl;
+
+        //std::cout << " Calling recursive on left (N="<<N<<")" << std::endl;
+        //MergeSortRecursive(array,             N_half_left);
+        //std::cout << " Calling recursive on right (N="<<N<<")" << std::endl;
+        //MergeSortRecursive(array+N_half_left, N_half_right);
+        MergeSortRecursiveWrap(global_array, global_N, array, N_half_left);
+        MergeSortRecursiveWrap(global_array, global_N, array+N_half_left, N_half_right);
+
+        std::cout << " Ok, next (N="<<N<<")" << std::endl;
+
+        std::cout << "      Before:" << std::endl;
+        //PrintArray(array, N);
+        for (int j = 0 ; j < global_N ; j++)
         {
-            bool take_left;
-            if      (li >= N_half_left)         take_left = false;
-            else if (ri >= N)                   take_left = true;
-            else if (array[li] <= array[ri])    take_left = true;
-            else /* (array[li] >  array[ri])*/  take_left = false;
+            std::cout << global_array[j] << "  ";
+        }
+        std::cout << std::endl;
 
-            if (take_left)
+        int lri = 0;            // Index of left element (considering swapping)
+        int lrj = -1;
+        int ri  = N_half_left;  // Index of right element
+        int i = -1;
+        while (i < N-2)
+        {
+            i++;
+
+            bool take_left;
+
+            if (ri >= N)
             {
-                tmp_array[i] = array[li];
-                li++;
+                if (i > N_half_left)
+                {
+                    //break;
+                }
+                else
+                {
+                    take_left = true;
+                }
             }
             else
             {
-                tmp_array[i] = array[ri];
+                if (array[lri] <= array[ri]) take_left = true;
+                else                         take_left = false;
+            }
+
+            std::cout << "  i=" << i << "  (lri,ri) = (" << lri << "," << ri << ")";
+            std::cout << "      array(lri,ri) = (" << array[lri] << "," << array[ri] << ")" << std::endl;
+
+
+            if (take_left)
+            {
+                // Take left (don't swap if already in place)
+                std::cout << "  Taking left." << std::endl;
+                if (lri != i)
+                {
+                    std::swap(array[lri], array[i]);
+                    std::cout << "  swapping " << array[lri] << " and " << array[i] << std::endl;
+                }
+                else
+                {
+                    std::cout << "  NOT swapping because lri == i" << std::endl;
+                }
+                lri = i+1;
                 ri++;
             }
+            else
+            {
+                // Take right
+                std::cout << "  Taking right." << std::endl;
+                std::swap(array[i], array[ri]);
+                std::cout << "  swapping " << array[ri] << " and " << array[i] << std::endl;
+                if (lri == i) lri = ri;
+                if (lrj == -1) lrj = lri;
+                ri++;
+            }
+
+            std::cout << "      Then:" << std::endl;
+            //PrintArray(array, N);
+            for (int j = 0 ; j < global_N ; j++)
+            {
+                std::cout << global_array[j] << "  ";
+            }
+            std::cout << std::endl;
+
         }
-        memcpy(array, tmp_array, N*sizeof(T));
-        delete[] tmp_array;
+        std::cout << "      After:" << std::endl;
+        for (int j = 0 ; j < global_N ; j++)
+        {
+            std::cout << global_array[j] << "  ";
+        }
+        std::cout << std::endl;
+        std::cout << "End of mergesort, returning." << std::endl;
     }
+}
+
+template <class T>
+void MergeSortRecursive(T * const array, const int N)
+{
+    MergeSortRecursiveWrap(array, N, array, N);
 }
 
 } // namespace efficient
