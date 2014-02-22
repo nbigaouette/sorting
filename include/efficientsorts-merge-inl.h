@@ -1,6 +1,10 @@
 #ifndef SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 #define SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 
+#include <cstring> // memmove()
+
+#include <printarray.h>
+
 namespace sorting {
 namespace efficient {
 
@@ -118,33 +122,35 @@ void MergeSortRecursive(T * const array, const int N)
     {
         const int N_half_left  = (N / 2) + (N % 2);
         const int N_half_right = N - N_half_left;
-        MergeSortRecursive(array,             N_half_left);
+
+        MergeSortRecursive(array, N_half_left);
         MergeSortRecursive(array+N_half_left, N_half_right);
 
-        T *tmp_array   = new T[N];
-        int li = 0;
-        int ri = N_half_left;
-        for (int i = 0 ; i < N ; i++)
+        int li = 0;             // Index of left element
+        int ri  = N_half_left;  // Index of right element
+        int i = -1;
+        while (li < ri and ri < N)
         {
-            bool take_left;
-            if      (li >= N_half_left)         take_left = false;
-            else if (ri >= N)                   take_left = true;
-            else if (array[li] <= array[ri])    take_left = true;
-            else /* (array[li] >  array[ri])*/  take_left = false;
+            i++;
 
-            if (take_left)
+            if (array[li] <= array[ri])
             {
-                tmp_array[i] = array[li];
+                // Do nothing as left element is already in place
                 li++;
             }
             else
             {
-                tmp_array[i] = array[ri];
+                // Copy right element into a temporary buffer, then move all elements
+                // between the current location "i" and the right element "ri" one to the right
+                T tmp_element = array[ri];
+                memmove(array+i+1, array+i, (ri-i)*sizeof(T));
+                array[i] = tmp_element;
+                // li has moved, increment it
+                li++;
+                // ri was moved, go to next
                 ri++;
             }
         }
-        memcpy(array, tmp_array, N*sizeof(T));
-        delete[] tmp_array;
     }
 }
 
