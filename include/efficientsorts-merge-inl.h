@@ -1,7 +1,7 @@
 #ifndef SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 #define SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 
-#include <cstring> // memcpy()
+#include <cstring> // memmove()
 
 #include <printarray.h>
 
@@ -123,99 +123,36 @@ void MergeSortRecursiveWrap(T * const global_array, const int global_N, T * cons
         const int N_half_left  = (N / 2) + (N % 2);
         const int N_half_right = N - N_half_left;
 
-        std::cout << "N = " << N << "   N_half_left = " << N_half_left << "  N_half_right = " << N_half_right << std::endl;
-
-        //std::cout << " Calling recursive on left (N="<<N<<")" << std::endl;
         //MergeSortRecursive(array,             N_half_left);
-        //std::cout << " Calling recursive on right (N="<<N<<")" << std::endl;
         //MergeSortRecursive(array+N_half_left, N_half_right);
         MergeSortRecursiveWrap(global_array, global_N, array, N_half_left);
         MergeSortRecursiveWrap(global_array, global_N, array+N_half_left, N_half_right);
 
-        std::cout << " Ok, next (N="<<N<<")" << std::endl;
-
-        std::cout << "      Before:" << std::endl;
-        //PrintArray(array, N);
-        for (int j = 0 ; j < global_N ; j++)
-        {
-            std::cout << global_array[j] << "  ";
-        }
-        std::cout << std::endl;
-
-        int lri = 0;            // Index of left element (considering swapping)
-        int lrj = -1;
+        int li = 0;             // Index of left element
         int ri  = N_half_left;  // Index of right element
         int i = -1;
-        while (i < N-2)
+        while (li < ri and ri < N)
         {
             i++;
 
-            bool take_left;
-
-            if (ri >= N)
+            if (array[li] <= array[ri])
             {
-                if (i > N_half_left)
-                {
-                    //break;
-                }
-                else
-                {
-                    take_left = true;
-                }
+                // Do nothing as left element is already in place
+                li++;
             }
             else
             {
-                if (array[lri] <= array[ri]) take_left = true;
-                else                         take_left = false;
-            }
-
-            std::cout << "  i=" << i << "  (lri,ri) = (" << lri << "," << ri << ")";
-            std::cout << "      array(lri,ri) = (" << array[lri] << "," << array[ri] << ")" << std::endl;
-
-
-            if (take_left)
-            {
-                // Take left (don't swap if already in place)
-                std::cout << "  Taking left." << std::endl;
-                if (lri != i)
-                {
-                    std::swap(array[lri], array[i]);
-                    std::cout << "  swapping " << array[lri] << " and " << array[i] << std::endl;
-                }
-                else
-                {
-                    std::cout << "  NOT swapping because lri == i" << std::endl;
-                }
-                lri = i+1;
+                // Copy right element into a temporary buffer, then move all elements
+                // between the current location "i" and the right element "ri" one to the right
+                T tmp_element = array[ri];
+                memmove(array+i+1, array+i, (ri-i)*sizeof(T));
+                array[i] = tmp_element;
+                // li has moved, increment it
+                li++;
+                // ri was moved, go to next
                 ri++;
             }
-            else
-            {
-                // Take right
-                std::cout << "  Taking right." << std::endl;
-                std::swap(array[i], array[ri]);
-                std::cout << "  swapping " << array[ri] << " and " << array[i] << std::endl;
-                if (lri == i) lri = ri;
-                if (lrj == -1) lrj = lri;
-                ri++;
-            }
-
-            std::cout << "      Then:" << std::endl;
-            //PrintArray(array, N);
-            for (int j = 0 ; j < global_N ; j++)
-            {
-                std::cout << global_array[j] << "  ";
-            }
-            std::cout << std::endl;
-
         }
-        std::cout << "      After:" << std::endl;
-        for (int j = 0 ; j < global_N ; j++)
-        {
-            std::cout << global_array[j] << "  ";
-        }
-        std::cout << std::endl;
-        std::cout << "End of mergesort, returning." << std::endl;
     }
 }
 
