@@ -7,7 +7,6 @@
 #include "gtest/gtest.h"
 
 #include "verifyarrays.h"
-#include "printarray.h"
 
 #define VALIDATE_SORTING(to_sort_data, sorted_data, N)                  \
 {                                                                       \
@@ -25,7 +24,7 @@
 {                                                                       \
     SortingFunction(sorted_data, N);                                    \
                                                                         \
-    /*if (verbose)*/                                                        \
+    if (verbose)                                                        \
     {                                                                   \
         std::cout << "Arrays" << std::endl;                             \
         std::cout << "Index Original     Sorted " << std::endl;         \
@@ -72,7 +71,6 @@
 {                                                                       \
     for (int N = 1 ; N <= Nmax ; N++)                                   \
     {                                                                   \
-    std::cout << "#########################################" << std::endl; \
         type *to_sort_data = new type[N];                               \
         type *sorted_data  = new type[N];                               \
                                                                         \
@@ -102,13 +100,7 @@
                                                                         \
     memcpy(sorted_data, to_sort_data, N*sizeof(type));                  \
                                                                         \
-    std::cout << "to_sort_data:" << std::endl; \
-    PrintArray(to_sort_data, N); \
-    std::cout << "known_sorted:" << std::endl; \
-    PrintArray(known_sorted, N); \
     SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
-    std::cout << "to_sort_data:" << std::endl; \
-    PrintArray(to_sort_data, N); \
                                                                         \
     for (int i = 0 ; i < N ; i++)                                       \
     {                                                                   \
