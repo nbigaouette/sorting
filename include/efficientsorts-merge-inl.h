@@ -102,7 +102,7 @@ void MergeSort(T * const array, const int N)
 }
 
 template <class T>
-void MergeSortRecursiveWrap(T * const global_array, const int global_N, T * const array, const int N)
+void MergeSortRecursive(T * const array, const int N)
 /**
  * Efficient sorts: Merge sort (recursive)
  * Scaling:
@@ -123,10 +123,8 @@ void MergeSortRecursiveWrap(T * const global_array, const int global_N, T * cons
         const int N_half_left  = (N / 2) + (N % 2);
         const int N_half_right = N - N_half_left;
 
-        //MergeSortRecursive(array,             N_half_left);
-        //MergeSortRecursive(array+N_half_left, N_half_right);
-        MergeSortRecursiveWrap(global_array, global_N, array, N_half_left);
-        MergeSortRecursiveWrap(global_array, global_N, array+N_half_left, N_half_right);
+        MergeSortRecursive(array, N_half_left);
+        MergeSortRecursive(array+N_half_left, N_half_right);
 
         int li = 0;             // Index of left element
         int ri  = N_half_left;  // Index of right element
@@ -154,12 +152,6 @@ void MergeSortRecursiveWrap(T * const global_array, const int global_N, T * cons
             }
         }
     }
-}
-
-template <class T>
-void MergeSortRecursive(T * const array, const int N)
-{
-    MergeSortRecursiveWrap(array, N, array, N);
 }
 
 } // namespace efficient
