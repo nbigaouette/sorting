@@ -22,6 +22,12 @@ It's a template library, so just include it:
 #include "sorting.h"
 ```
 
+## Notes
+Values are either swapped (using *std::swap()*) or moved (using *memmove()*). One has to make
+sure the array type used support these operations. Basic C++ types (integers, doubles, etc.) don't
+have any problem.
+
+
 ## Testing
 Unit tests are used to validate the implementations. To run them, use cmake:
 
