@@ -1,10 +1,20 @@
 # sorting
 
 This is a simple C++ template library implementing different sorting algorithms.
-Sorting functions are encapsulated into namespaces.
+
+## Goal
+The goal of this project is to learn different canonical sorting algorithms and
+their implementations; it is purely educational. I did not research any optimization
+on them and as such, there might be faster (but more complicated) ways of implementing
+them. I did put some though in the implementations as to have efficient and clean
+implementations without wasting memory.
+
+The code should be well commented and simple to follow and/or expand.
+Unit tests are used to validate every implementations.
 
 
 ## Algorithms
+Sorting functions are encapsulated into namespaces.
 Implemented algorithms are (more to come):
 ### Simple sorts
 * Insertion sort: *sorting::simple::InsertionSort()*
