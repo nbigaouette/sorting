@@ -1,20 +1,17 @@
-sorting
--------------------------
+# sorting
 
 This is a simple C++ template library implementing different sorting algorithms.
 Sorting functions are encapsulated into namespaces.
 
 
-Usage
--------------------------
+## Usage
 It's a template library, so just include it:
 
 ```C++
 #include "sorting.h"
 ```
 
-Testing
--------------------------
+## Testing
 Unit tests are used to validate the implementations. To run them, use cmake:
 
 ```bash
@@ -24,7 +21,6 @@ $ make
 $ ./unit_tests/libsorting_utests
 ```
 
-License
--------------------------
+## License
 
 This code is distributed under the terms of the BSD 3 clause and is Copyright 2014 Nicolas Bigaouette.
