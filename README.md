@@ -4,6 +4,17 @@ This is a simple C++ template library implementing different sorting algorithms.
 Sorting functions are encapsulated into namespaces.
 
 
+## Algorithms
+Implemented algorithms are (more to come):
+### Simple sorts
+* Insertion sort: *sorting::simple::InsertionSort()*
+* Selection sort: *sorting::simple::SelectionSort()*
+
+### Efficient sorts
+* Merge sort (non-recursive, bottom-up): *sorting::efficient::MergeSort()*
+* Merge sort (recursive, top-down): *sorting::efficient::MergeSortRecursive()*
+
+
 ## Usage
 It's a template library, so just include it:
 
