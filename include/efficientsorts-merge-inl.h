@@ -3,8 +3,6 @@
 
 #include <cstring> // memmove()
 
-#include <printarray.h>
-
 namespace sorting {
 namespace efficient {
 
