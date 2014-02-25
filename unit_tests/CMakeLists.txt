@@ -30,7 +30,7 @@ target_link_libraries(${PROJECT_NAME} gtest gtest_main)
 # Extra linking for the project.
 target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBRARY_NAME})
 
-set(VALGRIND    valgrind --tool=memcheck --leak-check=full --show-reachable=yes)
+set(VALGRIND    valgrind --tool=memcheck --leak-check=full --show-reachable=yes --db-attach=yes)
 set(GDB         gdb)
 
 # Compile and run unit tests
