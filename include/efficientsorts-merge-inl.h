@@ -26,13 +26,7 @@ void MergeSort(T * const array, const int N)
         return;
     }
 
-    T *tmp_array = new T[N];
-
-    // Pointers to begining of each arrays, pointing to the original array
-    // and the temporary array interchangely.
-    T * arrays[2] = {tmp_array, array};
-
-    // Divide the array into sub-arrays of size "level_size"
+    // Divide the array into sub-arrays of size "level_size".
     int level_size = 1;
     int level_i    = 0; // Index of level
     while (level_size < N)
@@ -45,60 +39,54 @@ void MergeSort(T * const array, const int N)
         // whill contian the rest.
         const int Ns = ((N % level_size) == 0) ? N/level_size : N/level_size+1;
 
-        // Alternate between the two arrays
-        T *new_array = arrays[ level_i      % 2];
-        T *to_sort   = arrays[(level_i + 1) % 2];
-
         // "sai" == Sub Array (starting) Index
         for (int sai = 0 ; sai < Ns ; sai += 2)
         {
+            const int N_half_left  = std::max(0, std::min(N, (sai+1)*level_size) - (sai  )*level_size);
+            const int N_half_right = std::max(0, std::min(N, (sai+2)*level_size) - (sai+1)*level_size);
+
             int li =  sai   *level_size;    // Left subarray's starting index of global array
             int ri = (sai+1)*level_size;    // Right subarray's starting index of global array
 
             // Loop over the subarray's elements
-            //for (int i = sai*level_size ; i < (sai+2)*level_size-(N%2) ; i++)
-            for (int i = sai*level_size ; i < std::min((sai+2)*level_size, N) ; i++)
+            const int i0 = sai*level_size;
+            const int iN = i0+N_half_left+N_half_right;
+            for (int i = i0 ; i < iN-1 and li<ri ; i++)
             {
-                // Take the element from the left subarray or from the right one?)
-                bool take_left;
+                assert(li >= i0);
+                assert(ri >= i0);
+                assert(li <  iN);
 
-                // All subelements of the left subarray are exhausted. Use the left array value.
-                if (li == (sai+1)*level_size)           take_left = false;
-                // All subelements of the right subarray are exhausted. Use the right array value.
-                else if (ri == (sai+2)*level_size)      take_left = true;
-                // The left subarray is empty
-                else if (li >= (sai+1)*level_size)      take_left = false;
-                // The right subarray is empty
-                else if (ri >= N)                       take_left = true;
-                // Compare elements
-                else if (to_sort[li] <= to_sort[ri])    take_left = true;
-                else /*  to_sort[li] >  to_sort[ri] */  take_left = false;
-
-                if (take_left)
+                if (li == ri or ri >= iN)
                 {
-                    new_array[i] = to_sort[li];
+                    // Exhausted one of the two sub-array. The other one is already
+                    // in place, so nothing left has to be done and break the loop.
+                    break;
+                }
+                else if (array[li] <= array[ri])
+                {
+                    // Do nothing as left element is already in place
                     li++;
                 }
                 else
                 {
-                    new_array[i] = to_sort[ri];
+                    // Take the right element.
+                    // Copy right element into a temporary buffer, then move all elements
+                    // between the current location "i" and the right element "ri" one to the right
+                    T tmp_element = array[ri];
+                    memmove(array+i+1, array+i, (ri-i)*sizeof(T));
+                    array[i] = tmp_element;
+                    // li has moved, increment it
+                    li++;
+                    // ri was moved, go to next
                     ri++;
                 }
-
             }
         }
 
         level_i++;
         level_size *= 2;
     }
-
-    // Copy the temporary array back to the original one if it was the last
-    // one to be updated.
-    if ((level_i % 2) != 0)
-    {
-        memcpy(array, tmp_array, N*sizeof(T));
-    }
-    delete[] tmp_array;
 }
 
 template <class T>
