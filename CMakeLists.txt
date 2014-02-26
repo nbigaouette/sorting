@@ -22,7 +22,7 @@ add_subdirectory(gtest)
 set(SOURCES "")
 set(HEADERS "")
 
-list(APPEND HEADERS "include/simplesorts.h")
+list(APPEND HEADERS "include/sorting.h")
 #list(APPEND SOURCES "src/main.cc")
 
 include_directories(${MAIN_PROJECT_PATH}/include)
