@@ -4,10 +4,12 @@
 template <class T>
 void PrintArray(T * const array, const int N)
 {
+    std::cout << "N = " << N << std::endl;
     for (int i = 0 ; i < N ; i++)
     {
-        std::cout << i << "/" << N << "   " << array[i] << std::endl;
+        std::cout << std::setw(3) << array[i] << " ";
     }
+    std::cout << std::endl;
 }
 
 #endif  // SORTING_INCLUDE_PRINTARRAY_INL_H_
