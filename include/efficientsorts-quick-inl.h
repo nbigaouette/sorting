@@ -7,12 +7,14 @@ namespace efficient {
 template <class T>
 void Quicksort(T * const array, const int N)
 {
+    // Return if array size is 1 or less
     if (N <= 1)
     {
         return;
     }
     else if (N == 2)
     {
+        // If two elements in the array, sort them manually and return
         if (array[0] > array[1])
         {
             std::swap(array[0], array[1]);
@@ -20,13 +22,20 @@ void Quicksort(T * const array, const int N)
         return;
     }
 
+    // Use the last element in the array as the pivot
     int pivot = N-1;
+    // Indices of left and right elements to swap:
+    //      array[i0] < array[pivot] and array[i1] > array[pivot]
     int i0 = 0;
     int i1 = pivot-1;
+    // Loop until break statement reached
     while (true)
     {
+        // Store previous values so we know where to start looking for the next
+        // possible elements to swap
         const int prev_i0 = i0;
         const int prev_i1 = i1;
+        // Reset indices. Later, we detect if these values were changed.
         i0 = -1;
         i1 = -1;
 
@@ -52,13 +61,13 @@ void Quicksort(T * const array, const int N)
 
         if (i0 == -1 and i1 == -1)
         {
-            // If both i0 and i1 are -1, no every elements are not larger or not smaller
-            // than the pivot; the whole array is equal. In that case, we return.
+            // If both i0 and i1 are -1, then the whole array is equal to a single
+            // value. In that case, we return.
             return;
         }
         else if (i0 == -1)
         {
-            // All elements are either smaller or equal to the pivot
+            // All elements are either smaller or equal to the pivot.
             // Keep the pivot at the end of the array.
             i0 = N-1;
             i1 = N;
@@ -73,7 +82,8 @@ void Quicksort(T * const array, const int N)
         }
         else
         {
-            // Swap elements i0 and i1
+            // Element at i0 is larger than the pivot and element at i1
+            // is smaller; swap them.
             std::swap(array[i0], array[i1]);
             i0++;
             i1--;
