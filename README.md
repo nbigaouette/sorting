@@ -17,13 +17,13 @@ Unit tests are used to validate every implementations.
 Sorting functions are encapsulated into namespaces.
 Implemented algorithms are (more to come):
 ### Simple sorts
-* Insertion sort: *sorting::simple::InsertionSort()*
-* Selection sort: *sorting::simple::SelectionSort()*
+* Insertion sort (in place): *sorting::simple::InsertionSort()*
+* Selection sort (in place): *sorting::simple::SelectionSort()*
 
 ### Efficient sorts
-* Merge sort (non-recursive, bottom-up): *sorting::efficient::MergeSort()*
-* Merge sort (recursive, top-down): *sorting::efficient::MergeSortRecursive()*
-* Quicksort (recursive): *sorting::efficient::Quicksort()*
+* Merge sort (in place, non-recursive, bottom-up): *sorting::efficient::MergeSort()*
+* Merge sort (in place, recursive, top-down): *sorting::efficient::MergeSortRecursive()*
+* Quicksort (in place, recursive): *sorting::efficient::Quicksort()*
 
 
 ## Usage
