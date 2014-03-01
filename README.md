@@ -23,6 +23,7 @@ Implemented algorithms are (more to come):
 ### Efficient sorts
 * Merge sort (non-recursive, bottom-up): *sorting::efficient::MergeSort()*
 * Merge sort (recursive, top-down): *sorting::efficient::MergeSortRecursive()*
+* Quicksort (recursive): *sorting::efficient::Quicksort()*
 
 
 ## Usage
