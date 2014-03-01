@@ -42,7 +42,7 @@
 
 #define VERIFY_SORTING_INPLACE_RANDOM_ARRAYS(Nmax, type, SortingFunction, verbose) \
 {                                                                       \
-    for (int N = 1 ; N < Nmax ; N++)                                    \
+    for (int N = -1 ; N < Nmax ; N++)                                    \
     {                                                                   \
         type *to_sort_data = NULL;                                      \
         type *sorted_data = NULL;                                       \
@@ -79,7 +79,7 @@
 
 #define VERIFY_SORTING_INPLACE_FIXED_SIZE_ARRAYS(Nmax, type, to_sorts, SortingFunction, verbose) \
 {                                                                       \
-    for (int N = 1 ; N <= Nmax ; N++)                                   \
+    for (int N = -1 ; N <= Nmax ; N++)                                   \
     {                                                                   \
         type *to_sort_data = NULL;                                      \
         type *sorted_data = NULL;                                       \
