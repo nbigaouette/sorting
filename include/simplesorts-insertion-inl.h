@@ -54,8 +54,8 @@ void InsertionSort(T * const array, const int N)
                     //array[j] = 1234567890; // Debug: set to a value to track it.
                 }
             }
-            // If the loop index "j" is -1, the previous loop ended without hiting
-            // the break steatement, meaning we hit the start of the array. In that
+            // If the loop index "j" is -1, the previous loop ended without hitting
+            // the break statement, meaning we hit the start of the array. In that
             // case, place the stored element there.
             if (j == -1)
             {
