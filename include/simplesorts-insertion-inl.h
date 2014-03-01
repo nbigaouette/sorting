@@ -16,6 +16,12 @@ void InsertionSort(T * const array, const int N)
  *      Good when array is small
  */
 {
+    // Return if array size is 1 or less
+    if (N <= 1)
+    {
+        return;
+    }
+
     // Temporary value used during sorting
     T tmp;
 

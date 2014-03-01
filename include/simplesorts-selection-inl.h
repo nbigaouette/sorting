@@ -17,6 +17,12 @@ void SelectionSort(T * const array, const int N)
  *      When swapping is expensive, as there is maximum of N swaps.
  */
 {
+    // Return if array size is 1 or less
+    if (N <= 1)
+    {
+        return;
+    }
+
     // Loop over all elements
     for (int i = 0 ; i < N ; i++)
     {

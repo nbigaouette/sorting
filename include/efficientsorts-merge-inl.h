@@ -19,7 +19,8 @@ void MergeSort(T * const array, const int N)
  *      large arrays.
  */
 {
-    if (N == 1)
+    // Return if array size is 1 or less
+    if (N <= 1)
     {
         return;
     }
@@ -100,7 +101,7 @@ void MergeSortRecursive(T * const array, const int N)
  *      large arrays.
  */
 {
-    if (N == 1)
+    if (N <= 1)
     {
         return;
     }
