@@ -1,6 +1,8 @@
 #ifndef SORTING_INCLUDE_EFFICIENTSORTS_QUICK_INL_H_
 #define SORTING_INCLUDE_EFFICIENTSORTS_QUICK_INL_H_
 
+#include "simplesorts-insertion-inl.h"
+
 namespace sorting {
 namespace efficient {
 
@@ -22,8 +24,13 @@ void Quicksort(T * const array, const int N)
         return;
     }
 
-    // Use the last element in the array as the pivot
-    int pivot = N-1;
+    // Optimization: Choose median of first, middle and last element as the pivot
+    int indices_tmp[3] = {0, (N/2)-1, N-1};
+    sorting::simple::InsertionSort(indices_tmp, 3);
+    const int pivot = N-1;
+    // Place pivot element at its location (end of array)
+    std::swap(array[indices_tmp[1]], array[pivot]);
+
     // Indices of left and right elements to swap:
     //      array[i0] < array[pivot] and array[i1] > array[pivot]
     int i0 = 0;
