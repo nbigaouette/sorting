@@ -36,34 +36,44 @@
         }                                                               \
     }                                                                   \
                                                                         \
-    VALIDATE_SORTING(to_sort_data, sorted_data, N);                     \
+    if (N > 0)                                                          \
+        VALIDATE_SORTING(to_sort_data, sorted_data, N);                 \
 }
 
 #define VERIFY_SORTING_INPLACE_RANDOM_ARRAYS(Nmax, type, SortingFunction, verbose) \
 {                                                                       \
     for (int N = 1 ; N < Nmax ; N++)                                    \
     {                                                                   \
-        type *to_sort_data = new type[N];                               \
-        type *sorted_data  = new type[N];                               \
+        type *to_sort_data = NULL;                                      \
+        type *sorted_data = NULL;                                       \
                                                                         \
-        /*
-        Initialize the array with random values between 1 and 100       \
-        NOTE: rand() is a terrible pseudo-random number generator (PRNG). \
-        It is still used here for a simple testing task, but don't use it \
-        for anything serious.
-        */                                                              \
-        srand(time(NULL));                                              \
-        for (int i = 0 ; i < N ; i++)                                   \
+        if (N > 0)                                                      \
         {                                                               \
-            to_sort_data[i] = rand() % 100 + 1;                         \
-        }                                                               \
+            to_sort_data = new type[N];                                 \
+            sorted_data  = new type[N];                                 \
                                                                         \
-        memcpy(sorted_data, to_sort_data, N*sizeof(type));              \
+            /*
+            Initialize the array with random values between 1 and 100   \
+            NOTE: rand() is a terrible pseudo-random number generator (PRNG). \
+            It is still used here for a simple testing task, but don't use it \
+            for anything serious.
+            */                                                          \
+            srand(time(NULL));                                          \
+            for (int i = 0 ; i < N ; i++)                               \
+            {                                                           \
+                to_sort_data[i] = rand() % 100 + 1;                     \
+            }                                                           \
+                                                                        \
+            memcpy(sorted_data, to_sort_data, N*sizeof(type));          \
+        }                                                               \
                                                                         \
         SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
-        delete[] to_sort_data;                                          \
-        delete[] sorted_data;                                           \
+        if (N > 0)                                                      \
+        {                                                               \
+            delete[] to_sort_data;                                      \
+            delete[] sorted_data;                                       \
+        }                                                               \
     }                                                                   \
 }
 
@@ -71,20 +81,29 @@
 {                                                                       \
     for (int N = 1 ; N <= Nmax ; N++)                                   \
     {                                                                   \
-        type *to_sort_data = new type[N];                               \
-        type *sorted_data  = new type[N];                               \
+        type *to_sort_data = NULL;                                      \
+        type *sorted_data = NULL;                                       \
                                                                         \
-        for (int i = 0 ; i < N ; i++)                                   \
+        if (N > 0)                                                      \
         {                                                               \
-            to_sort_data[i] = to_sorts[i];                              \
-        }                                                               \
+            to_sort_data = new type[N];                                 \
+            sorted_data  = new type[N];                                 \
                                                                         \
-        memcpy(sorted_data, to_sort_data, N*sizeof(type));              \
+            for (int i = 0 ; i < N ; i++)                               \
+            {                                                           \
+                to_sort_data[i] = to_sorts[i];                          \
+            }                                                           \
+                                                                        \
+            memcpy(sorted_data, to_sort_data, N*sizeof(type));          \
+        }                                                               \
                                                                         \
         SORT_AND_VERIFY(to_sort_data, sorted_data, N, SortingFunction, verbose); \
                                                                         \
-        delete[] to_sort_data;                                          \
-        delete[] sorted_data;                                           \
+        if (N > 0)                                                      \
+        {                                                               \
+            delete[] to_sort_data;                                      \
+            delete[] sorted_data;                                       \
+        }                                                               \
     }                                                                   \
 }
 
