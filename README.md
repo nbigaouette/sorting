@@ -53,16 +53,16 @@ $ ./unit_tests/libsorting_utests
 ```
 
 As of now, 10 unit tests are run for each sorting algorithms:
-- The first N elements (with N from 1 to 16) of an array of 16 integers is sorted;
-- The first N elements (with N from 1 to 16) of an array of 16 doubles is sorted;
+- The first N elements (with N from -1 to 16) of an array of 16 integers is sorted;
+- The first N elements (with N from -1 to 16) of an array of 16 doubles is sorted;
 - An array of 16 integers is sorted and compared to the required result;
 - An array of 16 doubles is sorted and compared to the required result;
-- Arrays of N integers (with N from 1 to 100) with random values are sorted (current time as seed);
-- Arrays of N doubles (with N from 1 to 100) with random values are sorted (current time as seed);
-- Arrays of N integers (with N from 1 to 100) with values already sorted are sorted;
-- Arrays of N doubles (with N from 1 to 100) with values already sorted are sorted;
-- Arrays of N integers (with N from 1 to 100) with values (inversely) sorted are sorted;
-- Arrays of N doubles (with N from 1 to 100) with values (inversely) sorted are sorted;
+- Arrays of N integers (with N from -1 to 100) with random values are sorted (current time as seed);
+- Arrays of N doubles (with N from -1 to 100) with random values are sorted (current time as seed);
+- Arrays of N integers (with N from -1 to 100) with values already sorted are sorted;
+- Arrays of N doubles (with N from -1 to 100) with values already sorted are sorted;
+- Arrays of N integers (with N from -1 to 100) with values (inversely) sorted are sorted;
+- Arrays of N doubles (with N from -1 to 100) with values (inversely) sorted are sorted;
 
 For each test, an array is considered sorted if:
 - Every element is smaller or equal (<=) then its next neighbour in the array;
