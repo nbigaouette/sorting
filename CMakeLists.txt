@@ -29,3 +29,6 @@ include_directories(${MAIN_PROJECT_PATH}/include)
 
 # Include unit tests
 add_subdirectory(unit_tests)
+
+# Include performance measurements
+add_subdirectory(profiling)
