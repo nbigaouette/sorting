@@ -85,10 +85,15 @@ void profileSort(void (*sort)(int * const, const int))
     delete[] data;
 }
 
+void generate_profiling_data()
+{
+    //profileSort(&sorting::simple::InsertionSort);
+    profileSort(&sorting::efficient::Quicksort);
+}
+
 int main(int argc, char *argv[])
 {
     std::cout << "main()" << std::endl;
 
-    //profileSort(&sorting::simple::InsertionSort);
-    profileSort(&sorting::efficient::Quicksort);
+    generate_profiling_data();
 }
