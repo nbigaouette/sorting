@@ -2,6 +2,7 @@
 #define SORTING_INCLUDE_EFFICIENTSORTS_MERGE_INL_H_
 
 #include <cstring> // memmove()
+#include <iostream> // std::min(), std::max()
 
 namespace sorting {
 namespace efficient {
