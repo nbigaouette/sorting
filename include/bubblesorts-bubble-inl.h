@@ -18,6 +18,40 @@ void BubbleSort(T * const array, const int N)
     int pass_count = 0;  // Number of pass over the array.
     int swap_count = 0;  // Number of swap for a single pass.
 
+    // Pass over the array while the swap count is non-null.
+    do
+    {
+        // It's a new pass; reset the count of swap.
+        swap_count = 0;
+        // Iterate over the array, skipping the last item
+        for (int i = 0 ; i < N-1 ; i++)
+        {
+            // Swap elements if next one is "smaller" and register the swap.
+            if (array[i] > array[i+1])
+            {
+                std::swap(array[i], array[i+1]);
+                swap_count++;
+            }
+        }
+        pass_count++;
+
+    } while (swap_count != 0);
+}
+
+template <class T>
+void BubbleSortOptimized(T * const array, const int N)
+/**
+ * Bubble sort: Bubble sort
+ * Scaling:
+ *      Best case:      O(N)
+ *      Worst case:     O(N^2)
+ * Useful:
+ *      Almost none; really slow, but extremely easy to implement.
+ */
+{
+    int pass_count = 0;  // Number of pass over the array.
+    int swap_count = 0;  // Number of swap for a single pass.
+
     int loop_N = N;
 
     // Pass over the array while the swap count is non-null.

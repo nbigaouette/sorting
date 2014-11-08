@@ -17,6 +17,7 @@ list(APPEND SOURCES "efficientsorts_mergesort.cc")
 list(APPEND SOURCES "efficientsorts_mergesortrecursive.cc")
 list(APPEND SOURCES "efficientsorts_quicksort.cc")
 list(APPEND SOURCES "bubblesorts_bubble.cc")
+list(APPEND SOURCES "bubblesorts_bubble_optimized.cc")
 
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
