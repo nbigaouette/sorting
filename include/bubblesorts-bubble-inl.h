@@ -9,10 +9,10 @@ void BubbleSort(T * const array, const int N)
 /**
  * Bubble sort: Bubble sort
  * Scaling:
- *      Best case:
- *      Worst case:
+ *      Best case:      O(N)
+ *      Worst case:     O(N^2)
  * Useful:
- *
+ *      Almost none; really slow, but extremely easy to implement.
  */
 {
     int pass_count = 0;  // Number of pass over the array.
