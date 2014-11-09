@@ -33,6 +33,10 @@ It's a template library, so just include it:
 #include "sorting.h"
 ```
 
+## Scaling
+
+![Profiling](profiling.png "Profiling of the different algorithms")
+
 ## Notes
 Values are either swapped (using *std::swap()*) or moved (using *memmove()*). One has to make
 sure the array type used support these operations. Basic C++ types (integers, doubles, etc.) don't
