@@ -16,6 +16,10 @@ if len(sys.argv) == 1:
 
 csv_files = glob.glob(os.path.join(sys.argv[1], '*.csv'))
 
+if (len(csv_files) == 0):
+    print('No csv found in ' + sys.argv[1] + '!')
+    sys.exit(1)
+
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
