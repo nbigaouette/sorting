@@ -3,6 +3,7 @@
 
 #include <cstring> // memmove()
 #include <iostream> // std::min(), std::max()
+#include <cassert>
 
 namespace sorting {
 namespace efficient {
