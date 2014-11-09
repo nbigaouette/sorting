@@ -33,7 +33,23 @@ It's a template library, so just include it:
 #include "sorting.h"
 ```
 
-## Scaling
+## Profiling
+
+A profiling code measures the average and standard deviation duration of 6
+runs over a range of N = 2^0 = 1 to N = 2^15 = 65,536. A python 3 script
+will plot the data. Both are located in `profiling`.
+
+Targets `prof` and `plot` have been added to the cmake file to compile
+the profiling code, run it and plot the data. On a Mac Book Air 2014
+(Intel(R) Core(TM) i7-4650U CPU @ 1.70GHz), the results are:
+
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make prof
+$ make plot
+```
 
 ![Profiling](profiling.png "Profiling of the different algorithms")
 
