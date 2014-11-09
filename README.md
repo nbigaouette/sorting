@@ -57,6 +57,18 @@ Note that the figure has error bars representing the standard deviation, which
 are not apparent on a log plot. The scale can be toggle between regular and log
 scale by pressing "l" from inside the matplotlib window.
 
+Interesting conclusions from these implementations:
+
+ * At large `N`, the fastest is, obviously, quicksort, followed by merge sorts.
+ * At large `N`, the slowest are bubble sorts. The optimized versions are faster
+   but not by much. This clearly shows that, while algorithms can be tweaked to
+   speed them, their scaling will stay the same. Further speed increase should be
+   obtained by changing algorithm altogether.
+ * At small `N` (up to N ~ 100), the fastest is the insertion sort. This shows that
+   for small problems, a simple algorithm is preferable as it is simpler to implement
+   and has lower overhead.
+ * The best overall algorithm in this case is quicksort as it's either the fastest
+   (at large `N`) or almost the fastest (at small `N`).
 
 ## Notes
 Values are either swapped (using *std::swap()*) or moved (using *memmove()*). One has to make
