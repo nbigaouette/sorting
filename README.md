@@ -25,6 +25,12 @@ Implemented algorithms are (more to come):
 * Merge sort (in place, recursive, top-down): *sorting::efficient::MergeSortRecursive()*
 * Quicksort (in place, recursive): *sorting::efficient::Quicksort()*
 
+### Bubble sorts
+* Bubble sort (in place): *sorting::bubble::BubbleSort()*
+* Bubble sort, optimized #1 (in place): *sorting::bubble::BubbleSortOptimized()*
+* Bubble sort, optimized #2 (in place): *sorting::bubble::BubbleSortOptimized()*
+
+
 
 ## Usage
 It's a template library, so just include it:
