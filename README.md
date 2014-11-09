@@ -60,6 +60,8 @@ scale by pressing "l" from inside the matplotlib window.
 Interesting conclusions from these implementations:
 
  * At large `N`, the fastest is, obviously, quicksort, followed by merge sorts.
+ * The recursive version of merge sort is not much different from the non-recursive
+   version in terms of performance.
  * At large `N`, the slowest are bubble sorts. The optimized versions are faster
    but not by much. This clearly shows that, while algorithms can be tweaked to
    speed them, their scaling will stay the same. Further speed increase should be
