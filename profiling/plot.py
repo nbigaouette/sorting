@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 if len(sys.argv) == 1:
     print('Usage: plot.py path/to/build/profiling')
-    sys.exit(0)
+    sys.exit(1)
 
 csv_files = glob.glob(os.path.join(sys.argv[1], '*.csv'))
 
