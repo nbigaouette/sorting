@@ -33,6 +33,45 @@ It's a template library, so just include it:
 #include "sorting.h"
 ```
 
+## Profiling
+
+A profiling code measures the average and standard deviation duration of 25
+runs over a range of N = 2^0 = 1 to N = 2^15 = 65,536. A python 3 script
+will plot the data. Both are located in `profiling`.
+
+Targets `prof` and `plot` have been added to the cmake file to compile
+the profiling code, run it and plot the data. On a Mac Book Air 2014
+(Intel(R) Core(TM) i7-4650U CPU @ 1.70GHz), the results are:
+
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make prof
+$ make plot
+```
+
+![Profiling](profiling.png "Profiling of the different algorithms")
+
+Note that the figure has error bars representing the standard deviation, which
+are not apparent on a log plot. The scale can be toggle between regular and log
+scale by pressing "l" from inside the matplotlib window.
+
+Interesting conclusions from these implementations:
+
+ * At large `N`, the fastest is, obviously, quicksort, followed by merge sorts.
+ * The recursive version of merge sort is not much different from the non-recursive
+   version in terms of performance.
+ * At large `N`, the slowest are bubble sorts. The optimized versions are faster
+   but not by much. This clearly shows that, while algorithms can be tweaked to
+   speed them, their scaling will stay the same. Further speed increase should be
+   obtained by changing algorithm altogether.
+ * At small `N` (up to N ~ 100), the fastest is the insertion sort. This shows that
+   for small problems, a simple algorithm is preferable as it is simpler to implement
+   and has lower overhead.
+ * The best overall algorithm in this case is quicksort as it's either the fastest
+   (at large `N`) or almost the fastest (at small `N`).
+
 ## Notes
 Values are either swapped (using *std::swap()*) or moved (using *memmove()*). One has to make
 sure the array type used support these operations. Basic C++ types (integers, doubles, etc.) don't

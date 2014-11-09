@@ -1,6 +1,10 @@
 #ifndef SORTING_INCLUDE_PRINTARRAY_INL_H_
 #define SORTING_INCLUDE_PRINTARRAY_INL_H_
 
+#include <iomanip>
+#include <iostream>
+
+
 template <class T>
 void PrintArray(T * const array, const int N)
 {
