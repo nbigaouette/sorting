@@ -32,3 +32,5 @@ add_custom_target(prof DEPENDS ${PROJECT_NAME} COMMAND             ${CMAKE_CURRE
 add_custom_target(profval  DEPENDS ${PROJECT_NAME} COMMAND ${VALGRIND} ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}  COMMENT "Compile and run profiling through valgrind")
 # Compile and run profiling through gdb
 add_custom_target(profgdb  DEPENDS ${PROJECT_NAME} COMMAND ${GDB}      ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}  COMMENT "Compile and run profiling through gdb")
+# Plot profiling
+add_custom_target(plot  COMMAND             ${CMAKE_SOURCE_DIR}/profiling/plot.py ${CMAKE_CURRENT_BINARY_DIR}  COMMENT "Plot profiling data")
