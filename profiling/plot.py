@@ -3,12 +3,18 @@
 
 import glob
 import re
+import os
+import sys
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-csv_files = glob.glob('*.csv')
+if len(sys.argv) == 1:
+    print('Usage: plot.py path/to/build/profiling')
+    sys.exit(0)
+
+csv_files = glob.glob(os.path.join(sys.argv[1], '*.csv'))
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
