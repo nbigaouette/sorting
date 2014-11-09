@@ -2,14 +2,16 @@
 #include "sorting.h"
 #include "printarray.h"
 
+#include <string>
 #include <vector>
 #include <cmath>
 #include <random>
 #include <functional>
 #include <chrono>
+#include <fstream>
 
 
-double profileAverage_ms(const int *const data, const int N, const int avgN, void (*sort)(int * const, const int))
+std::vector<double> profileAverage_ms(const int *const data, const int N, const int avgN, void (*sort)(int * const, const int))
 {
     int *array = new int[N];
 
@@ -44,18 +46,18 @@ double profileAverage_ms(const int *const data, const int N, const int avgN, voi
     }
     stddev = std::sqrt(stddev);
 
-    std::cout << N << ", " << avg << " +- " << stddev << " ms" << std::endl;
-
     delete[] array;
 
-    return avg;
+    std::vector<double> timing_ms = {avg, stddev};
+
+    return timing_ms;
 }
 
 
-void profileSort(void (*sort)(int * const, const int))
+void profileSort(const std::string sort_name, void (*sort)(int * const, const int))
 {
     const int pow2min = 0;
-    const int pow2max = 16;
+    const int pow2max = 9;
 
     const int seed = 4;
 
@@ -75,25 +77,41 @@ void profileSort(void (*sort)(int * const, const int))
 
     //PrintArray(Ns.data(), Ns.size());
 
+    const std::string output_filename = "profiling_" + sort_name + ".csv";
+
+    std::cout << "Profiling " << sort_name << " (saving to " << output_filename << ")" << std::endl;
+
+    std::ofstream output_file;
+    output_file.open(output_filename);
+
+    output_file << "# 2^j, N, avg [ms], stddev [ms]" << std::endl;
+
     for (int j = pow2min ; j <= pow2max ; j++)
     {
         const int N = 2 << j;
-        profileAverage_ms(data, N, 6, sort);
-        //std::cout << j << ", " << N << ", " << profileAverage_ms(data, N, 6, sort) << " ms" << std::endl;
+        auto timing_ms = profileAverage_ms(data, N, 6, sort);
+        output_file << j << ", " << N << ", " << timing_ms[0] << ", " << timing_ms[1] << std::endl;
+        std::cout << N << ": " << timing_ms[0] << " +- " << timing_ms[1] << " ms" << std::endl;
     }
+
+    output_file.close();
 
     delete[] data;
 }
 
 void generate_profiling_data()
 {
-    //profileSort(&sorting::simple::InsertionSort);
-    profileSort(&sorting::efficient::Quicksort);
+    profileSort("simple_insertionsort",             &sorting::simple::InsertionSort);
+    profileSort("simple_selectionsort",             &sorting::simple::SelectionSort);
+    profileSort("efficient_mergesort",              &sorting::efficient::MergeSort);
+    profileSort("efficient_mergesort_recursive",    &sorting::efficient::MergeSortRecursive);
+    profileSort("efficient_quicksort",              &sorting::efficient::Quicksort);
+    profileSort("bubble_bubblesort",                &sorting::bubble::BubbleSort);
+    profileSort("bubble_bubblesortoptimized",       &sorting::bubble::BubbleSortOptimized);
+    profileSort("bubble_bubblesortoptimized2",      &sorting::bubble::BubbleSortOptimized2);
 }
 
 int main(int argc, char *argv[])
 {
-    std::cout << "main()" << std::endl;
-
     generate_profiling_data();
 }
