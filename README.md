@@ -38,6 +38,8 @@ It's a template library, so just include it:
 ```C++
 #include "sorting.h"
 ```
+As shown in previous section, the different sorting functions are defined in
+specific namespaces.
 
 ## Profiling
 
