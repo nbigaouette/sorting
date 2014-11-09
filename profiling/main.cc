@@ -89,7 +89,7 @@ void profileSort(const std::string sort_name, void (*sort)(int * const, const in
     for (int j = pow2min ; j <= pow2max ; j++)
     {
         const int N = 2 << j;
-        auto timing_ms = profileAverage_ms(data, N, 6, sort);
+        auto timing_ms = profileAverage_ms(data, N, 25, sort);
         output_file << j << ", " << N << ", " << timing_ms[0] << ", " << timing_ms[1] << std::endl;
         std::cout << "(j,N) = (" << j << ", " << N << "): " << timing_ms[0] << " +- " << timing_ms[1] << " ms" << std::endl;
     }

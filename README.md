@@ -35,7 +35,7 @@ It's a template library, so just include it:
 
 ## Profiling
 
-A profiling code measures the average and standard deviation duration of 6
+A profiling code measures the average and standard deviation duration of 25
 runs over a range of N = 2^0 = 1 to N = 2^15 = 65,536. A python 3 script
 will plot the data. Both are located in `profiling`.
 
