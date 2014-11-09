@@ -91,7 +91,7 @@ void profileSort(const std::string sort_name, void (*sort)(int * const, const in
         const int N = 2 << j;
         auto timing_ms = profileAverage_ms(data, N, 6, sort);
         output_file << j << ", " << N << ", " << timing_ms[0] << ", " << timing_ms[1] << std::endl;
-        std::cout << N << ": " << timing_ms[0] << " +- " << timing_ms[1] << " ms" << std::endl;
+        std::cout << "(j,N) = (" << j << ", " << N << "): " << timing_ms[0] << " +- " << timing_ms[1] << " ms" << std::endl;
     }
 
     output_file.close();
