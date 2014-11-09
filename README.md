@@ -53,6 +53,11 @@ $ make plot
 
 ![Profiling](profiling.png "Profiling of the different algorithms")
 
+Note that the figure has error bars representing the standard deviation, which
+are not apparent on a log plot. The scale can be toggle between regular and log
+scale by pressing "l" from inside the matplotlib window.
+
+
 ## Notes
 Values are either swapped (using *std::swap()*) or moved (using *memmove()*). One has to make
 sure the array type used support these operations. Basic C++ types (integers, doubles, etc.) don't
