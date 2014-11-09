@@ -57,7 +57,7 @@ std::vector<double> profileAverage_ms(const int *const data, const int N, const 
 void profileSort(const std::string sort_name, void (*sort)(int * const, const int))
 {
     const int pow2min = 0;
-    const int pow2max = 9;
+    const int pow2max = 15;
 
     const int seed = 4;
 
