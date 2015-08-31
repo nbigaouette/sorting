@@ -45,6 +45,8 @@ ax.set_xlabel('N')
 ax.set_ylabel('Timing [s]')
 ax.set_xscale('log', basex=2)
 ax.set_yscale('log')
+xlims = ax.get_xlim()
+ax.set_xlim(xlims[0]/2, xlims[1]*2)
 ax.legend(loc='best')
 
 plt.show()
