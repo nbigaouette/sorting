@@ -54,7 +54,7 @@ the profiling code, run it and plot the data. On a Mac Book Air 2014
 ```bash
 $ mkdir build
 $ cd build
-$ cmake ..
+$ cmake -DCMAKE_BUILD_TYPE=Release ..
 $ make prof
 $ make plot
 ```
