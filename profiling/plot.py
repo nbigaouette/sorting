@@ -43,7 +43,7 @@ for csv_file in csv_files:
 ax.grid(True)
 ax.set_xlabel('N')
 ax.set_ylabel('Timing [s]')
-ax.set_xscale('log')
+ax.set_xscale('log', basex=2)
 ax.set_yscale('log')
 ax.legend(loc='best')
 
